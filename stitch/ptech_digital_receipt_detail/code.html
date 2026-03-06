@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PTech Digital Receipt</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#ff6b00","primary-dark": "#cc5500",
+                        "background-dark": "#0f172a","card-navy": "#1e293b","text-light": "#f8fafc",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"]
+                    },
+                    backgroundImage: {
+                        'linen': "url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0IiBoZWlnaHQ9IjQiPgo8cmVjdCB3aWR0aD0iNCIgaGVpZ2h0PSI0IiBmaWxsPSIjMWUyOTNiIi8+CjxwYXRoIGQ9Ik0wIDNMMiAxdjJMMCA1ek0yIDBMMCAydjJMMiAwek00IDNMMiAxdjJMNCA1ek0yIDBMNCAydjJMMiAweiIgZmlsbD0iIzMzNDE1NSIgZmlsbC1vcGFjaXR5PSIwLjEiLz4KPC9zdmc+')",
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .ticket-jagged-bottom {
+            background-image: linear-gradient(135deg, transparent 50%, #1e293b 50%), linear-gradient(45deg, #1e293b 50%, transparent 50%);
+            background-position: bottom left, bottom left;
+            background-size: 20px 20px;
+            background-repeat: repeat-x;
+        }.linen-texture {
+             background-color: #1e293b;
+             background-image: url("data:image/svg+xml,%3Csvg width='6' height='6' viewBox='0 0 6 6' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23334155' fill-opacity='0.2' fill-rule='evenodd'%3E%3Cpath d='M5 0h1L0 6V5zM6 5v1H5z'/%3E%3C/g%3E%3C/svg%3E");
+        }
+    </style>
+<style>
+        body {
+            min-height: max(884px, 100dvh);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-dark font-display min-h-screen flex flex-col items-center justify-center p-4 text-text-light">
+<div class="fixed top-0 left-0 right-0 z-10 bg-background-dark/95 backdrop-blur-sm border-b border-slate-800">
+<div class="flex items-center justify-between p-4 max-w-md mx-auto w-full">
+<button class="flex items-center justify-center w-10 h-10 rounded-full hover:bg-white/10 transition-colors text-white">
+<span class="material-symbols-outlined text-2xl">arrow_back</span>
+</button>
+<h2 class="text-white text-lg font-bold tracking-wide uppercase text-xs opacity-80">Receipt</h2>
+<div class="w-10 h-10"></div> 
+</div>
+</div>
+<div class="w-full max-w-md mt-20 mb-32 relative">
+<div class="relative linen-texture rounded-t-lg shadow-2xl overflow-hidden border-t border-x border-slate-700/50">
+<div class="flex flex-col items-center pt-10 pb-8 border-b border-dashed border-slate-600/50">
+<div class="w-20 h-20 bg-primary/20 rounded-full flex items-center justify-center mb-5 border border-primary/30 shadow-[0_0_15px_rgba(255,107,0,0.3)]">
+<span class="material-symbols-outlined text-5xl text-primary">local_parking</span>
+</div>
+<h1 class="text-white text-4xl font-extrabold tracking-tight mb-2 font-mono">500 CFA</h1>
+<div class="flex items-center gap-2 mt-2">
+<div class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
+<span class="text-green-400 text-xs font-bold uppercase tracking-widest">Payment Successful</span>
+</div>
+</div>
+<div class="p-8 space-y-6">
+<div class="flex justify-between items-center group">
+<span class="text-slate-400 text-xs font-semibold uppercase tracking-wider">Transaction ID</span>
+<span class="text-white text-sm font-bold font-mono tracking-wide group-hover:text-primary transition-colors">PT-839201</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-slate-400 text-xs font-semibold uppercase tracking-wider">Date</span>
+<span class="text-white text-sm font-medium">Oct 24, 2023</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-slate-400 text-xs font-semibold uppercase tracking-wider">Time</span>
+<span class="text-white text-sm font-medium">09:30 AM - 11:30 AM</span>
+</div>
+<div class="h-px w-full bg-gradient-to-r from-transparent via-slate-600 to-transparent my-2"></div>
+<div class="flex justify-between items-start">
+<span class="text-slate-400 text-xs font-semibold uppercase tracking-wider mt-1">Zone</span>
+<div class="text-right">
+<p class="text-primary text-base font-bold">Douala Zone A</p>
+<p class="text-slate-500 text-xs mt-0.5">Akwa Blvd</p>
+</div>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-slate-400 text-xs font-semibold uppercase tracking-wider">Vehicle</span>
+<span class="text-white text-sm font-bold bg-slate-800 px-3 py-1.5 rounded border border-slate-700 font-mono">CM 2834 A</span>
+</div>
+<div class="h-px w-full bg-gradient-to-r from-transparent via-slate-600 to-transparent my-2"></div>
+<div class="space-y-3 pt-2">
+<div class="flex justify-between items-center text-sm">
+<span class="text-slate-400 font-medium">Duration (2h)</span>
+<span class="text-slate-200 font-medium">400 CFA</span>
+</div>
+<div class="flex justify-between items-center text-sm">
+<span class="text-slate-400 font-medium">Service Fee</span>
+<span class="text-slate-200 font-medium">50 CFA</span>
+</div>
+<div class="flex justify-between items-center text-sm">
+<span class="text-slate-400 font-medium">VAT (19.25%)</span>
+<span class="text-slate-200 font-medium">50 CFA</span>
+</div>
+<div class="flex justify-between items-center pt-4 mt-2 border-t border-dashed border-slate-600/50">
+<span class="text-white font-bold text-base">Total Paid</span>
+<span class="text-primary text-xl font-black tracking-tight">500 CFA</span>
+</div>
+</div>
+</div>
+<div class="bg-black/20 p-8 flex flex-col items-center justify-center border-t border-dashed border-slate-600/50 pb-12">
+<div class="bg-white p-3 rounded-lg shadow-lg mb-4 ring-4 ring-white/5">
+<div class="w-32 h-32 bg-[url('https://api.qrserver.com/v1/create-qr-code/?size=150x150&amp;data=PTech-Parking-Receipt-839201')] bg-contain bg-no-repeat mix-blend-multiply opacity-90" data-alt="QR Code for parking validation"></div>
+</div>
+<p class="text-[10px] text-slate-500 uppercase tracking-widest font-bold text-center">Scan to Verify</p>
+</div>
+<div class="absolute -bottom-3 left-0 right-0 h-4 ticket-jagged-bottom w-full"></div>
+</div>
+</div>
+<div class="fixed bottom-0 left-0 right-0 p-6 bg-background-dark/95 backdrop-blur-xl border-t border-slate-800 z-20">
+<div class="max-w-md mx-auto grid grid-cols-2 gap-5">
+<button class="flex items-center justify-center gap-2 w-full py-4 px-4 rounded-xl border border-primary text-primary font-bold text-sm hover:bg-primary/10 transition-all duration-300 active:scale-95 uppercase tracking-wide">
+<span class="material-symbols-outlined text-[20px]">share</span>
+                Share
+            </button>
+<button class="flex items-center justify-center gap-2 w-full py-4 px-4 rounded-xl bg-transparent border border-primary text-white font-bold text-sm shadow-[0_0_15px_rgba(255,107,0,0.15)] hover:shadow-[0_0_25px_rgba(255,107,0,0.3)] hover:bg-primary hover:text-white transition-all duration-300 active:scale-95 uppercase tracking-wide group">
+<span class="material-symbols-outlined text-[20px] text-primary group-hover:text-white transition-colors">download</span>
+                Download
+            </button>
+</div>
+</div>
+
+</body></html>

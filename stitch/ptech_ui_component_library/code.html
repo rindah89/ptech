@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PTech UI Component Library</title>
+<!-- Fonts and Icons -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Config -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#f99e1f",
+              "background-light": "#f8f7f5",
+              "background-dark": "#231b0f",
+              "surface-dark": "#2e2415",
+              "surface-lighter": "#3d311e",
+            },
+            fontFamily: {
+              "display": ["Manrope", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+            boxShadow: {
+                "glow": "0 0 15px -3px rgba(249, 158, 31, 0.3)",
+                "glass": "0 8px 32px 0 rgba(0, 0, 0, 0.37)"
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        /* Custom scrollbar for better mobile preview */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #231b0f; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #3d311e; 
+            border-radius: 3px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #f99e1f; 
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display antialiased selection:bg-primary selection:text-white">
+<div class="mx-auto max-w-md w-full min-h-screen relative flex flex-col bg-background-light dark:bg-background-dark shadow-2xl overflow-hidden">
+<!-- Header -->
+<header class="sticky top-0 z-20 flex items-center justify-between px-4 py-4 bg-background-dark/95 backdrop-blur-md border-b border-surface-lighter">
+<button class="flex items-center justify-center w-10 h-10 rounded-full text-slate-100 hover:bg-surface-dark transition-colors">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<h2 class="text-lg font-bold text-center flex-1 pr-10 text-slate-100">Component Library</h2>
+</header>
+<!-- Main Content Area -->
+<main class="flex-1 overflow-y-auto px-4 py-6 pb-24 space-y-8">
+<!-- Branding Section -->
+<section class="space-y-4">
+<div class="flex items-center gap-2 mb-2">
+<span class="w-1 h-6 bg-primary rounded-full"></span>
+<h3 class="text-sm uppercase tracking-wider font-semibold text-primary/80">Branding &amp; Typography</h3>
+</div>
+<div class="p-6 rounded-xl bg-surface-dark border border-surface-lighter space-y-6">
+<div>
+<h1 class="text-4xl font-extrabold tracking-tight text-white mb-1">PTech<span class="text-primary">.</span></h1>
+<p class="text-xs text-slate-400">Display Large / Manrope ExtraBold</p>
+</div>
+<div class="h-px bg-surface-lighter"></div>
+<div>
+<h2 class="text-2xl font-bold text-white mb-1">Parking Session</h2>
+<p class="text-xs text-slate-400">Title Large / Manrope Bold</p>
+</div>
+<div>
+<h3 class="text-lg font-semibold text-white mb-1">Payment Methods</h3>
+<p class="text-xs text-slate-400">Title Medium / Manrope Semibold</p>
+</div>
+<div>
+<p class="text-base text-slate-300 mb-1">Confirm your transaction via MTN Mobile Money.</p>
+<p class="text-xs text-slate-500">Body Regular / Manrope Regular</p>
+</div>
+</div>
+</section>
+<!-- Buttons Section -->
+<section class="space-y-4">
+<div class="flex items-center gap-2 mb-2">
+<span class="w-1 h-6 bg-primary rounded-full"></span>
+<h3 class="text-sm uppercase tracking-wider font-semibold text-primary/80">Buttons</h3>
+</div>
+<div class="grid gap-4">
+<!-- Primary Button -->
+<div class="flex flex-col gap-2">
+<button class="w-full py-3.5 px-6 rounded-xl bg-primary hover:bg-primary/90 text-white font-bold text-base shadow-glow transition-all active:scale-[0.98] flex items-center justify-center gap-2">
+<span>Pay 500 XAF</span>
+<span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+</button>
+<span class="text-xs text-center text-slate-500">Primary / Orange</span>
+</div>
+<!-- Secondary/Ghost Button -->
+<div class="flex flex-col gap-2">
+<button class="w-full py-3.5 px-6 rounded-xl bg-primary/10 hover:bg-primary/20 text-primary font-bold text-base border border-primary/30 transition-all active:scale-[0.98]">
+                            Top Up Wallet
+                        </button>
+<span class="text-xs text-center text-slate-500">Ghost / Orange</span>
+</div>
+<!-- Muted/Destructive Button -->
+<div class="flex flex-col gap-2">
+<button class="w-full py-3.5 px-6 rounded-xl bg-red-500/10 hover:bg-red-500/20 text-red-500 font-semibold text-base transition-all active:scale-[0.98] flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[20px]">close</span>
+                            Cancel Session
+                        </button>
+<span class="text-xs text-center text-slate-500">Muted / Red</span>
+</div>
+</div>
+</section>
+<!-- Inputs Section -->
+<section class="space-y-4">
+<div class="flex items-center gap-2 mb-2">
+<span class="w-1 h-6 bg-primary rounded-full"></span>
+<h3 class="text-sm uppercase tracking-wider font-semibold text-primary/80">Input Fields</h3>
+</div>
+<div class="space-y-4 p-6 rounded-xl bg-surface-dark border border-surface-lighter">
+<!-- Text Input -->
+<div class="space-y-1.5">
+<label class="text-xs font-medium text-slate-400 ml-1">License Plate</label>
+<div class="relative group">
+<span class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-primary transition-colors material-symbols-outlined">directions_car</span>
+<input class="w-full bg-surface-lighter text-white placeholder-slate-500 border border-transparent rounded-xl py-3.5 pl-12 pr-4 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all shadow-sm" placeholder="CE 123 AB" type="text" value="LT 492 MK"/>
+</div>
+</div>
+<!-- Phone Input -->
+<div class="space-y-1.5">
+<label class="text-xs font-medium text-slate-400 ml-1">Phone Number</label>
+<div class="relative group">
+<span class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-primary transition-colors material-symbols-outlined">smartphone</span>
+<input class="w-full bg-background-dark text-white placeholder-slate-500 border border-surface-lighter rounded-xl py-3.5 pl-12 pr-4 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all shadow-sm" placeholder="6XX XXX XXX" type="tel"/>
+</div>
+</div>
+</div>
+</section>
+<!-- Cards Section -->
+<section class="space-y-4">
+<div class="flex items-center gap-2 mb-2">
+<span class="w-1 h-6 bg-primary rounded-full"></span>
+<h3 class="text-sm uppercase tracking-wider font-semibold text-primary/80">Cards</h3>
+</div>
+<!-- Info Card -->
+<div class="p-5 rounded-xl bg-gradient-to-br from-surface-dark to-background-dark border border-surface-lighter shadow-lg relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-3 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-6xl text-primary">local_parking</span>
+</div>
+<div class="flex justify-between items-start mb-4 relative z-10">
+<div>
+<p class="text-xs text-slate-400 font-medium uppercase tracking-wide">Active Session</p>
+<h4 class="text-lg font-bold text-white mt-1">Douala, Bonanjo</h4>
+</div>
+<span class="bg-primary/20 text-primary text-xs font-bold px-2 py-1 rounded-md border border-primary/20">01h 45m</span>
+</div>
+<div class="w-full bg-surface-lighter rounded-full h-1.5 mb-2 relative z-10">
+<div class="bg-primary h-1.5 rounded-full" style="width: 70%"></div>
+</div>
+<p class="text-right text-xs text-slate-400 relative z-10">Cost: <span class="text-white font-bold">350 XAF</span></p>
+</div>
+<!-- Wallet Card Mini -->
+<div class="flex items-center justify-between p-4 rounded-xl bg-surface-dark border border-surface-lighter">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">account_balance_wallet</span>
+</div>
+<div>
+<p class="text-sm font-medium text-slate-300">Balance</p>
+<p class="text-lg font-bold text-white">12,500 XAF</p>
+</div>
+</div>
+<button class="w-8 h-8 rounded-full bg-surface-lighter flex items-center justify-center text-slate-300 hover:text-white hover:bg-primary transition-colors">
+<span class="material-symbols-outlined text-lg">add</span>
+</button>
+</div>
+</section>
+</main>
+<!-- Bottom Navigation Bar (Glassmorphic) -->
+<nav class="fixed bottom-0 left-0 right-0 z-50">
+<!-- Glass effect container -->
+<div class="mx-auto max-w-md bg-surface-dark/80 backdrop-blur-xl border-t border-white/5 pb-6 pt-2 px-6">
+<div class="flex justify-between items-end">
+<!-- Home (Active) -->
+<a class="flex flex-col items-center justify-center gap-1 group w-16" href="#">
+<div class="relative p-2 rounded-xl transition-all duration-300">
+<!-- Active Indicator Glow -->
+<div class="absolute inset-0 bg-primary/20 blur-md rounded-full"></div>
+<span class="material-symbols-outlined relative z-10 text-primary fill-current" style="font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;">home</span>
+</div>
+<span class="text-[10px] font-bold text-primary tracking-wide">Home</span>
+</a>
+<!-- Sessions -->
+<a class="flex flex-col items-center justify-center gap-1 group w-16 opacity-60 hover:opacity-100 transition-opacity" href="#">
+<div class="p-2 rounded-xl">
+<span class="material-symbols-outlined text-slate-100 group-hover:text-primary transition-colors">schedule</span>
+</div>
+<span class="text-[10px] font-medium text-slate-300 group-hover:text-white">Sessions</span>
+</a>
+<!-- Wallet -->
+<a class="flex flex-col items-center justify-center gap-1 group w-16 opacity-60 hover:opacity-100 transition-opacity" href="#">
+<div class="p-2 rounded-xl">
+<span class="material-symbols-outlined text-slate-100 group-hover:text-primary transition-colors">account_balance_wallet</span>
+</div>
+<span class="text-[10px] font-medium text-slate-300 group-hover:text-white">Wallet</span>
+</a>
+<!-- Profile -->
+<a class="flex flex-col items-center justify-center gap-1 group w-16 opacity-60 hover:opacity-100 transition-opacity" href="#">
+<div class="p-2 rounded-xl">
+<span class="material-symbols-outlined text-slate-100 group-hover:text-primary transition-colors">person</span>
+</div>
+<span class="text-[10px] font-medium text-slate-300 group-hover:text-white">Profile</span>
+</a>
+</div>
+</div>
+</nav>
+</div>
+</body></html>

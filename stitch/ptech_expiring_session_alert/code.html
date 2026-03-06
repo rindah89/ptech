@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PTech Expiring Session Alert</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#f27f0d",
+                        "background-light": "#f8f7f5",
+                        "background-dark": "#221910",
+                        "surface-dark": "#2c2117",
+                        "text-secondary": "#cbad90"
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .glassmorphism {
+            background: rgba(44, 33, 23, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 antialiased overflow-hidden h-screen flex flex-col relative">
+<!-- Top Status Bar Mockup -->
+<div class="absolute top-0 w-full z-50 flex justify-between items-center px-6 pt-2 pb-2">
+<span class="text-sm font-semibold text-white">9:41</span>
+<div class="flex gap-1.5">
+<span class="material-symbols-outlined text-sm text-white" style="font-size: 18px;">signal_cellular_alt</span>
+<span class="material-symbols-outlined text-sm text-white" style="font-size: 18px;">wifi</span>
+<span class="material-symbols-outlined text-sm text-white" style="font-size: 18px;">battery_full</span>
+</div>
+</div>
+<!-- Main Content (Blurred Background) -->
+<div class="flex-1 flex flex-col relative z-0 filter blur-[2px] brightness-50 pointer-events-none select-none">
+<!-- Header -->
+<div class="flex items-center bg-background-dark/90 p-4 pb-2 pt-12 justify-between border-b border-[#493622]">
+<div class="flex size-10 shrink-0 items-center">
+<div class="bg-center bg-no-repeat bg-cover rounded-full size-10 border-2 border-primary" data-alt="User profile picture" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBCo0u5-t-Ix9Sizyoi9Y-Jvggb9j_7AqIbcyP52ga3qoTmXQsmMP0QEzuYSeCh-sZ_Wq0BYkky_5EBckgMmPVcYwYs-o6GD2d7ibReQY069UrM8XccYreBiHI8xMilDlUiQTMUdAjQsMk7BL5rBFIv09vNQiBntzUbko9WxBUSP3WpAx2iW38nqxxcLZIBCWWsKHd4nvaW9mFmI_AeSrjI-qnzHnEhYHUsbcQcqBcgk-AVWKICoZ0GCx8YjhrS10YweRfRpDrsxTet");'></div>
+</div>
+<div class="flex flex-col items-center">
+<span class="text-xs text-text-secondary uppercase tracking-wider font-medium">Current Location</span>
+<div class="flex items-center gap-1 text-white">
+<span class="material-symbols-outlined text-primary" style="font-size: 16px;">location_on</span>
+<h2 class="text-base font-bold leading-tight">Douala, Akwa</h2>
+</div>
+</div>
+<div class="flex size-10 items-center justify-end">
+<button class="flex items-center justify-center rounded-full size-10 bg-surface-dark text-white relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 size-2 bg-primary rounded-full border border-surface-dark"></span>
+</button>
+</div>
+</div>
+<!-- Map Area -->
+<div class="flex-1 relative w-full h-full bg-surface-dark">
+<!-- Simulated Map Background -->
+<div class="absolute inset-0 bg-cover bg-center opacity-40 mix-blend-overlay" data-alt="Dark map showing city streets" data-location="Douala" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDMwSm9iIG2Ji5DhnxlsFD6fGnA5Ycyx98IOncxB3a3tBpVMQLDOE1H_DKrEIzI3kwxwFwvPog5KV_auNRp92z2wwEJ8Lzs4h5pU0V0xKLz7N5QL8ZcKcUj5XwIKFFg8FEbijwYqbu0Brr0Z8npe8UezHnFgAmHIZZDUHoHRTDnH-hZs6Ts-GMbW5KNSu8B3rbLQL2w17AZ77LLQFxbUJL9qIHNYUcddl38IJUYMYSop_WaisoLbe1G5ZRZ-8S4fZO8IZnHK148HmuF");'></div>
+<!-- Search Bar (Simulated) -->
+<div class="absolute top-4 left-4 right-4 z-10">
+<div class="flex w-full items-center bg-surface-dark/90 rounded-xl border border-[#493622] shadow-lg h-12 px-4">
+<span class="material-symbols-outlined text-primary mr-3">search</span>
+<span class="text-text-secondary text-sm">Find parking near Marché Central...</span>
+</div>
+</div>
+<!-- Map Pins (Simulated) -->
+<div class="absolute top-1/3 left-1/4 transform -translate-x-1/2 -translate-y-1/2 flex flex-col items-center">
+<div class="bg-primary text-white text-xs font-bold px-2 py-1 rounded-md shadow-lg mb-1">200 XAF</div>
+<span class="material-symbols-outlined text-primary text-4xl drop-shadow-lg">location_on</span>
+</div>
+<div class="absolute bottom-1/3 right-1/4 transform -translate-x-1/2 -translate-y-1/2 flex flex-col items-center opacity-60">
+<div class="bg-surface-dark text-white text-xs font-bold px-2 py-1 rounded-md shadow-lg mb-1 border border-[#493622]">500 XAF</div>
+<span class="material-symbols-outlined text-white text-4xl drop-shadow-lg">location_on</span>
+</div>
+<!-- Map Controls -->
+<div class="absolute bottom-6 right-4 flex flex-col gap-3">
+<button class="size-12 bg-surface-dark rounded-full flex items-center justify-center text-primary shadow-lg border border-[#493622]">
+<span class="material-symbols-outlined">my_location</span>
+</button>
+<button class="size-12 bg-surface-dark rounded-full flex items-center justify-center text-white shadow-lg border border-[#493622]">
+<span class="material-symbols-outlined">layers</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Overlay Alert Modal -->
+<div class="absolute inset-0 z-50 flex items-end sm:items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
+<div class="w-full max-w-md glassmorphism border border-primary rounded-2xl p-6 shadow-[0_0_30px_rgba(242,127,13,0.25)] animate-in slide-in-from-bottom-10 fade-in duration-300">
+<!-- Icon & Header -->
+<div class="flex items-start gap-4 mb-4">
+<div class="shrink-0 size-12 rounded-full bg-primary/20 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-3xl animate-pulse">timer_off</span>
+</div>
+<div class="flex-1 pt-1">
+<h3 class="text-white text-xl font-bold leading-tight mb-1">Parking Expiring</h3>
+<p class="text-text-secondary text-sm font-medium leading-relaxed">
+                        Your session at <span class="text-white font-semibold">Marché Central</span> expires in <span class="text-primary font-bold">5 minutes</span>!
+                    </p>
+</div>
+<button class="text-text-secondary hover:text-white transition-colors">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<!-- Timer Visualization (Optional visual cue) -->
+<div class="w-full bg-surface-dark/50 rounded-full h-1.5 mb-6 overflow-hidden">
+<div class="bg-primary h-full w-[15%] rounded-full shadow-[0_0_10px_rgba(242,127,13,0.8)]"></div>
+</div>
+<!-- Actions -->
+<div class="grid grid-cols-2 gap-3">
+<button class="col-span-1 flex items-center justify-center h-12 rounded-xl bg-transparent border border-[#493622] hover:bg-[#493622]/50 text-white text-sm font-bold tracking-wide transition-all">
+                    View Details
+                </button>
+<button class="col-span-1 flex items-center justify-center h-12 rounded-xl bg-primary text-background-dark text-sm font-bold tracking-wide shadow-lg hover:bg-orange-500 transition-all">
+                    Extend for 1 hr
+                </button>
+</div>
+<p class="text-center text-[10px] text-text-secondary mt-4 opacity-70">
+                Payment via Mobile Money • Fees apply
+            </p>
+</div>
+</div>
+<!-- Bottom Navigation (Blurred behind overlay, but structurally present) -->
+<div class="relative z-0 border-t border-[#493622] bg-surface-dark px-4 pb-6 pt-2 filter blur-[2px] brightness-50 pointer-events-none">
+<div class="flex justify-between items-end">
+<a class="flex flex-1 flex-col items-center justify-end gap-1 text-white opacity-60" href="#">
+<span class="material-symbols-outlined text-2xl">home</span>
+<span class="text-[10px] font-medium">Home</span>
+</a>
+<a class="flex flex-1 flex-col items-center justify-end gap-1 text-primary" href="#">
+<span class="material-symbols-outlined text-2xl fill-1">local_parking</span>
+<span class="text-[10px] font-medium">My Parking</span>
+</a>
+<a class="flex flex-1 flex-col items-center justify-end gap-1 text-white opacity-60" href="#">
+<span class="material-symbols-outlined text-2xl">account_balance_wallet</span>
+<span class="text-[10px] font-medium">Wallet</span>
+</a>
+<a class="flex flex-1 flex-col items-center justify-end gap-1 text-white opacity-60" href="#">
+<span class="material-symbols-outlined text-2xl">person</span>
+<span class="text-[10px] font-medium">Profile</span>
+</a>
+</div>
+</div>
+</body></html>

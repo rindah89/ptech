@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PTech User Profile</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1152d4",
+                        "primary-dark": "#0a3aa0", 
+                        "secondary": "#f97316", 
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#0f172a","surface-dark": "#1e293b",},
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined.filled {
+            font-variation-settings: 'FILL' 1, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-dark font-display antialiased text-slate-100 h-screen flex flex-col overflow-hidden">
+<main class="flex-1 overflow-y-auto no-scrollbar pb-20 bg-background-dark">
+<header class="relative bg-gradient-to-b from-[#020617] to-[#1e3a8a] pt-12 pb-24 px-4 rounded-b-[2.5rem] shadow-2xl border-b border-white/5">
+<div class="flex items-center justify-between mb-6">
+<button class="text-white p-2 rounded-full hover:bg-white/10 transition-colors">
+<span class="material-symbols-outlined text-2xl">arrow_back</span>
+</button>
+<h1 class="text-white text-lg font-bold tracking-tight">Profile</h1>
+<button class="text-white p-2 rounded-full hover:bg-white/10 transition-colors">
+<span class="material-symbols-outlined text-2xl">more_vert</span>
+</button>
+</div>
+<div class="absolute left-4 right-4 -bottom-16">
+<div class="bg-surface-dark rounded-2xl shadow-xl shadow-black/40 p-6 flex flex-col items-center border border-white/5">
+<div class="relative -mt-16 mb-3">
+<div class="w-24 h-24 rounded-full border-4 border-surface-dark overflow-hidden shadow-lg bg-slate-700">
+<img alt="Portrait of a smiling man" class="w-full h-full object-cover" data-alt="Portrait of a smiling man" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAFTdNbN3xy2gYUFeFyxV4KN8-xPXXxTO7znBYxAUmu8x14KKqqSBLxCzrjlnnTNr2B-DUYmrCRAw9HwWzhYaCHkE0bwk1Py0mIuQFNxWis_bSj5EUPW7rGy_TmdEtlLJmxmqQEz9h0_-FRST3eiTsy8MpjMFxTxmJ5BgBggOhcSARPa1XgNUjvBzFQd-wEbZBqZqf3dsqq76yxL6wcoMvr7pbB0ry9P-iduWG0yBJIp0wWD-FQV8m4YOjf52nj2RXqQuyAGycV9uY2"/>
+</div>
+<button class="absolute bottom-0 right-0 bg-secondary text-white p-1.5 rounded-full shadow-lg hover:bg-orange-600 transition-colors border-2 border-surface-dark">
+<span class="material-symbols-outlined text-xs font-bold leading-none">edit</span>
+</button>
+</div>
+<h2 class="text-white text-xl font-bold text-center mb-1">Jean-Pierre Kamga</h2>
+<p class="text-slate-400 text-sm font-medium text-center mb-4">+237 699 123 456</p>
+<div class="w-full flex justify-center gap-4">
+<div class="flex flex-col items-center p-3 bg-slate-800/50 rounded-xl w-24 border border-white/5">
+<span class="text-blue-400 font-bold text-lg">12</span>
+<span class="text-xs text-slate-400">Parkings</span>
+</div>
+<div class="flex flex-col items-center p-3 bg-slate-800/50 rounded-xl w-24 border border-white/5">
+<span class="text-secondary font-bold text-lg">4.8</span>
+<span class="text-xs text-slate-400">Rating</span>
+</div>
+</div>
+</div>
+</div>
+</header>
+<div class="h-20"></div>
+<div class="px-4 py-4 space-y-3">
+<button class="w-full flex items-center justify-between p-4 bg-surface-dark rounded-xl border border-white/5 shadow-lg shadow-black/20 hover:bg-slate-700 transition-all group">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined font-light">person</span>
+</div>
+<span class="text-slate-200 font-medium text-base">Account Settings</span>
+</div>
+<span class="material-symbols-outlined text-slate-500 group-hover:text-secondary transition-colors">chevron_right</span>
+</button>
+<button class="w-full flex items-center justify-between p-4 bg-surface-dark rounded-xl border border-white/5 shadow-lg shadow-black/20 hover:bg-slate-700 transition-all group">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined font-light">directions_car</span>
+</div>
+<span class="text-slate-200 font-medium text-base">Vehicle Management</span>
+</div>
+<span class="material-symbols-outlined text-slate-500 group-hover:text-secondary transition-colors">chevron_right</span>
+</button>
+<button class="w-full flex items-center justify-between p-4 bg-surface-dark rounded-xl border border-white/5 shadow-lg shadow-black/20 hover:bg-slate-700 transition-all group">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined font-light">account_balance_wallet</span>
+</div>
+<span class="text-slate-200 font-medium text-base">Payment Methods</span>
+</div>
+<span class="material-symbols-outlined text-slate-500 group-hover:text-secondary transition-colors">chevron_right</span>
+</button>
+<button class="w-full flex items-center justify-between p-4 bg-surface-dark rounded-xl border border-white/5 shadow-lg shadow-black/20 hover:bg-slate-700 transition-all group">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined font-light">notifications</span>
+</div>
+<span class="text-slate-200 font-medium text-base">Notification Preferences</span>
+</div>
+<span class="material-symbols-outlined text-slate-500 group-hover:text-secondary transition-colors">chevron_right</span>
+</button>
+<button class="w-full flex items-center justify-between p-4 bg-surface-dark rounded-xl border border-white/5 shadow-lg shadow-black/20 hover:bg-slate-700 transition-all group">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined font-light">support_agent</span>
+</div>
+<span class="text-slate-200 font-medium text-base">Support &amp; Help</span>
+</div>
+<span class="material-symbols-outlined text-slate-500 group-hover:text-secondary transition-colors">chevron_right</span>
+</button>
+<div class="pt-6 pb-8">
+<button class="w-full flex items-center justify-center gap-2 p-4 rounded-xl text-red-400 bg-red-900/10 border border-red-900/20 shadow-[0_0_15px_rgba(220,38,38,0.15)] hover:bg-red-900/20 hover:shadow-[0_0_20px_rgba(220,38,38,0.25)] transition-all font-medium">
+<span class="material-symbols-outlined">logout</span>
+                Logout
+            </button>
+</div>
+</div>
+</main>
+<nav class="bg-surface-dark border-t border-slate-800 px-6 pb-6 pt-3 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.3)] z-20">
+<div class="flex justify-between items-end">
+<a class="flex flex-1 flex-col items-center justify-end gap-1 text-slate-500 hover:text-blue-400 transition-colors group" href="#">
+<div class="flex h-6 items-center justify-center group-hover:-translate-y-1 transition-transform">
+<span class="material-symbols-outlined text-[24px]">home</span>
+</div>
+<span class="text-[10px] font-medium tracking-wide">Home</span>
+</a>
+<a class="flex flex-1 flex-col items-center justify-end gap-1 text-slate-500 hover:text-blue-400 transition-colors group" href="#">
+<div class="flex h-6 items-center justify-center group-hover:-translate-y-1 transition-transform">
+<span class="material-symbols-outlined text-[24px]">local_parking</span>
+</div>
+<span class="text-[10px] font-medium tracking-wide">Park</span>
+</a>
+<div class="relative -top-5">
+<button class="bg-gradient-to-tr from-blue-700 to-blue-500 hover:from-blue-600 hover:to-blue-400 text-white rounded-full w-14 h-14 flex items-center justify-center shadow-lg shadow-blue-900/50 transition-all active:scale-95 border-4 border-background-dark">
+<span class="material-symbols-outlined text-[28px]">qr_code_scanner</span>
+</button>
+</div>
+<a class="flex flex-1 flex-col items-center justify-end gap-1 text-slate-500 hover:text-blue-400 transition-colors group" href="#">
+<div class="flex h-6 items-center justify-center group-hover:-translate-y-1 transition-transform">
+<span class="material-symbols-outlined text-[24px]">account_balance_wallet</span>
+</div>
+<span class="text-[10px] font-medium tracking-wide">Wallet</span>
+</a>
+<a class="flex flex-1 flex-col items-center justify-end gap-1 text-blue-400 group" href="#">
+<div class="flex h-6 items-center justify-center">
+<span class="material-symbols-outlined filled text-[24px]">person</span>
+</div>
+<span class="text-[10px] font-medium tracking-wide">Profile</span>
+</a>
+</div>
+</nav>
+
+</body></html>

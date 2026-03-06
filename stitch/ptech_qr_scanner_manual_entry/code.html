@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PTech QR Scanner &amp; Manual Entry</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind Config -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#f27f0d", // Neon Orange
+                        "background-light": "#f8f7f5",
+                        "background-dark": "#1a1a1a", // Obsidian Black feel
+                        "surface-dark": "#262626",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="font-display bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 antialiased overflow-hidden">
+<div class="relative flex h-screen w-full flex-col max-w-md mx-auto overflow-hidden bg-background-light dark:bg-background-dark shadow-2xl">
+<!-- Header -->
+<div class="flex items-center justify-between p-4 z-20">
+<button class="flex size-10 items-center justify-center rounded-full bg-white/10 text-white hover:bg-white/20 transition-colors">
+<span class="material-symbols-outlined text-2xl">arrow_back</span>
+</button>
+<h2 class="text-white text-lg font-bold tracking-tight">Scan to Pay</h2>
+<button class="flex size-10 items-center justify-center rounded-full bg-white/10 text-white hover:bg-white/20 transition-colors">
+<span class="material-symbols-outlined text-2xl">help</span>
+</button>
+</div>
+<!-- Camera Viewfinder Area -->
+<div class="relative flex-1 flex flex-col items-center justify-center w-full">
+<!-- Fake Camera Feed Background -->
+<div class="absolute inset-0 z-0 bg-cover bg-center opacity-40 blur-sm" data-alt="Blurred street view representing camera feed" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDFxLDDgQiEkqrcq47MdwzIExLvy3-IFIY9BhL2TcsnlVh9k3O1ka86vrsfFRUkzXlgM0zrft6yzlBc2iY4BZXSiKgn_qXA3vBe7nenZIz-ngFOpFW5C973KSdQIP7r7bZ7Bsvi1x8bKiaKMByhFnzvoupIs-hrTsFEq2yd5aEwPicurJzzmpRRwX7lmpqQJSePMdlfG5yj5qRyowPnpNaacIdAr77G-R_KHkVhY_qAQnHTmG4ZkcNkd_7BFckwzTKNqM2gYWQ68qfd');">
+</div>
+<div class="absolute inset-0 z-0 bg-gradient-to-b from-background-dark/80 via-transparent to-background-dark/90"></div>
+<!-- Scanner Frame -->
+<div class="relative z-10 w-64 h-64 border-2 border-primary/30 rounded-xl bg-black/20 backdrop-blur-[2px] shadow-[0_0_15px_rgba(242,127,13,0.3)]">
+<!-- Corner Accents (Neon Orange) -->
+<div class="absolute -top-[2px] -left-[2px] w-8 h-8 border-t-4 border-l-4 border-primary rounded-tl-xl"></div>
+<div class="absolute -top-[2px] -right-[2px] w-8 h-8 border-t-4 border-r-4 border-primary rounded-tr-xl"></div>
+<div class="absolute -bottom-[2px] -left-[2px] w-8 h-8 border-b-4 border-l-4 border-primary rounded-bl-xl"></div>
+<div class="absolute -bottom-[2px] -right-[2px] w-8 h-8 border-b-4 border-r-4 border-primary rounded-br-xl"></div>
+<!-- Scanning Animation Line -->
+<div class="absolute top-0 left-0 w-full h-1 bg-primary shadow-[0_0_10px_#f27f0d] animate-[scan_2s_ease-in-out_infinite] opacity-80"></div>
+</div>
+<!-- Instruction Text -->
+<p class="relative z-10 mt-8 text-slate-200 text-sm font-medium text-center bg-black/40 px-4 py-2 rounded-full backdrop-blur-md border border-white/5">
+                Align QR code within the frame to scan
+            </p>
+<!-- Flashlight Toggle -->
+<button class="relative z-10 mt-6 flex items-center gap-2 px-5 py-2.5 rounded-full bg-surface-dark/80 border border-white/10 text-white hover:bg-surface-dark transition active:scale-95 group">
+<span class="material-symbols-outlined text-xl group-hover:text-primary transition-colors">flashlight_on</span>
+<span class="text-sm font-medium">Flashlight</span>
+</button>
+</div>
+<!-- Bottom Sheet / Controls -->
+<div class="relative z-20 bg-surface-dark/50 backdrop-blur-xl border-t border-white/5 p-6 rounded-t-3xl -mt-4 shadow-[0_-5px_20px_rgba(0,0,0,0.5)]">
+<div class="w-12 h-1 bg-white/20 rounded-full mx-auto mb-6"></div>
+<div class="flex flex-col gap-4">
+<div class="text-center">
+<p class="text-slate-400 text-sm mb-2">Camera blocked or not working?</p>
+</div>
+<!-- Manual Entry Button -->
+<button class="w-full flex items-center justify-between p-4 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 transition group">
+<div class="flex items-center gap-3">
+<div class="size-10 rounded-lg bg-primary/20 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">keyboard</span>
+</div>
+<div class="text-left">
+<h3 class="text-white font-bold text-base">Enter Zone Code Manually</h3>
+<p class="text-slate-400 text-xs">Type the 6-digit code on the sign</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-slate-400 group-hover:translate-x-1 transition-transform">chevron_right</span>
+</button>
+<!-- Additional Action (e.g., upload photo) -->
+<button class="w-full flex items-center justify-center gap-2 p-3 rounded-xl border border-dashed border-white/20 text-slate-300 hover:text-white hover:border-primary/50 hover:bg-primary/5 transition text-sm">
+<span class="material-symbols-outlined text-lg">image</span>
+                    Upload QR from Gallery
+                </button>
+</div>
+<!-- Bottom Spacer for Home Indicator -->
+<div class="h-6"></div>
+</div>
+</div>
+<style>
+        @keyframes scan {
+            0% { top: 4px; opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { top: calc(100% - 8px); opacity: 0; }
+        }
+    </style>
+</body></html>

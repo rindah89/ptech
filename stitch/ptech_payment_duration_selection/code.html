@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PTech Payment &amp; Duration Selection</title>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#ff7900","primary-dark": "#e66a00", 
+                        "background-dark": "#0f172a","surface-glass": "rgba(30, 41, 59, 0.7)","mtn-yellow": "#ffcc00",
+                        "orange-money": "#ff7900",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"]
+                    },
+                    backgroundImage: {
+                        "premium-gradient": "linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%)",
+                        "neon-glow": "conic-gradient(from 180deg at 50% 50%, #ff7900 0deg, rgba(255, 121, 0, 0.2) 260deg, #ff7900 360deg)"
+                    },
+                    boxShadow: {
+                        "glass": "0 8px 32px 0 rgba(0, 0, 0, 0.37)",
+                        "neon": "0 0 10px rgba(255, 121, 0, 0.5), 0 0 20px rgba(255, 121, 0, 0.3)",
+                        "card-glow": "0 0 15px rgba(255, 121, 0, 0.15)",
+                    }
+                },
+            },
+        }
+    </script>
+<style type="text/tailwindcss">
+        @layer utilities {
+            .glass-panel {
+                @apply bg-surface-glass backdrop-blur-md border border-white/10 shadow-glass;
+            }
+        }input[type=range] {
+            -webkit-appearance: none; 
+            background: transparent; 
+        }
+        input[type=range]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            height: 28px;
+            width: 28px;
+            border-radius: 50%;
+            background: #ffffff;
+            cursor: pointer;
+            margin-top: -12px; 
+            box-shadow: 0 0 10px #ff7900, 0 0 20px #ff7900;
+            border: 2px solid #ff7900;
+        }
+        input[type=range]::-webkit-slider-runnable-track {
+            width: 100%;
+            height: 6px;
+            cursor: pointer;
+            background: linear-gradient(90deg, #ff7900 50%, #334155 50%);
+            border-radius: 3px;
+        }input[type=range]::-moz-range-thumb {
+            height: 28px;
+            width: 28px;
+            border: 2px solid #ff7900;
+            border-radius: 50%;
+            background: #ffffff;
+            cursor: pointer;
+            box-shadow: 0 0 10px #ff7900, 0 0 20px #ff7900;
+        }
+        input[type=range]::-moz-range-track {
+            width: 100%;
+            height: 6px;
+            cursor: pointer;
+            background: linear-gradient(90deg, #ff7900 50%, #334155 50%);
+            border-radius: 3px;
+        }
+    </style>
+<style>
+        body {
+            min-height: max(884px, 100dvh);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-slate-900 font-display text-slate-100 min-h-screen flex flex-col items-center justify-center">
+<div class="relative w-full max-w-md h-full min-h-screen bg-premium-gradient flex flex-col shadow-2xl overflow-hidden">
+<div class="absolute top-[-10%] left-[-10%] w-[50%] h-[30%] bg-blue-600/20 rounded-full blur-[80px] pointer-events-none"></div>
+<div class="absolute bottom-[10%] right-[-5%] w-[60%] h-[40%] bg-orange-500/10 rounded-full blur-[80px] pointer-events-none"></div>
+<div class="flex items-center p-4 pb-2 justify-between bg-transparent backdrop-blur-sm sticky top-0 z-10">
+<button class="text-white flex size-12 shrink-0 items-center justify-center rounded-full hover:bg-white/10 transition-colors">
+<span class="material-symbols-outlined text-[24px]">arrow_back</span>
+</button>
+<h2 class="text-white text-lg font-bold leading-tight tracking-wide flex-1 text-center pr-12 drop-shadow-md">Duration &amp; Pay</h2>
+</div>
+<div class="flex-1 overflow-y-auto pb-32 relative z-0">
+<div class="px-6 pt-6 pb-4 text-center">
+<div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 backdrop-blur-md text-orange-400 text-xs font-bold mb-4 uppercase tracking-widest shadow-lg">
+<span class="material-symbols-outlined text-sm">location_on</span>
+                    Zone A
+                </div>
+<h2 class="text-white tracking-tight text-[32px] font-bold leading-tight drop-shadow-lg">Marché Central</h2>
+<p class="text-slate-400 text-sm mt-1 font-medium tracking-wide">Douala, Cameroon</p>
+</div>
+<div class="mt-4 mx-4 p-8 glass-panel rounded-3xl relative overflow-hidden group">
+<div class="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-50 pointer-events-none"></div>
+<div class="relative z-10 flex flex-col items-center justify-center">
+<div class="relative size-48 flex items-center justify-center mb-6">
+<div class="absolute inset-0 rounded-full border-[3px] border-slate-700/50"></div>
+<svg class="absolute inset-0 w-full h-full -rotate-90 drop-shadow-[0_0_8px_rgba(255,121,0,0.6)]" viewBox="0 0 100 100">
+<circle cx="50" cy="50" fill="transparent" r="46" stroke="#ff7900" stroke-dasharray="289" stroke-dashoffset="100" stroke-linecap="round" stroke-width="4"></circle>
+</svg>
+<div class="text-center flex flex-col items-center justify-center bg-[#0f172a] rounded-full size-36 shadow-[inset_0_2px_10px_rgba(0,0,0,0.5)] border border-slate-700">
+<span class="text-5xl font-bold text-white tracking-tighter drop-shadow-md">2<span class="text-2xl text-slate-400 font-medium ml-1">h</span></span>
+<span class="text-xl text-slate-400 font-medium">00m</span>
+</div>
+</div>
+<div class="w-full flex justify-between items-center px-2 mb-2">
+<div class="text-left">
+<p class="text-slate-400 text-xs font-medium uppercase tracking-wider">Start</p>
+<p class="text-white font-bold">12:45</p>
+</div>
+<div class="text-right">
+<p class="text-slate-400 text-xs font-medium uppercase tracking-wider">End</p>
+<p class="text-orange-400 font-bold drop-shadow-sm">14:45</p>
+</div>
+</div>
+<div class="relative w-full h-10 flex items-center justify-center mt-2">
+<input class="w-full z-20 relative" max="240" min="30" step="30" type="range" value="120"/>
+</div>
+<div class="flex justify-between w-full text-[10px] text-slate-500 font-bold uppercase tracking-wider mt-1 px-1">
+<span>30 min</span>
+<span>4 hours</span>
+</div>
+</div>
+</div>
+<div class="mt-8 text-center px-4 relative">
+<p class="text-slate-400 text-sm font-medium mb-1 uppercase tracking-widest">Total Cost</p>
+<div class="flex items-center justify-center gap-2">
+<h1 class="text-white tracking-tight text-[56px] font-bold leading-none drop-shadow-[0_4px_4px_rgba(0,0,0,0.5)]">1,200</h1>
+<span class="text-xl text-orange-400 font-bold mt-4">FCFA</span>
+</div>
+<div class="mt-3 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-800/80 border border-slate-700 text-slate-300 text-xs">
+<span class="material-symbols-outlined text-[14px] text-orange-400">info</span>
+                    600 FCFA / Hour
+                 </div>
+</div>
+<div class="mt-10 px-4">
+<h3 class="text-white text-sm font-bold mb-4 px-2 uppercase tracking-wider text-slate-400">Payment Method</h3>
+<div class="space-y-4">
+<label class="relative flex items-center p-4 rounded-2xl border border-slate-700/50 bg-slate-800/40 backdrop-blur-sm cursor-pointer transition-all hover:bg-slate-800/60 has-[:checked]:border-mtn-yellow has-[:checked]:bg-mtn-yellow/10 has-[:checked]:shadow-[0_0_15px_rgba(255,204,0,0.1)] group">
+<input checked="" class="sr-only peer" name="payment" type="radio"/>
+<div class="size-12 rounded-xl bg-[#ffcc00] flex items-center justify-center shrink-0 mr-4 shadow-lg ring-1 ring-white/10">
+<span class="font-bold text-black text-xs text-center leading-tight">MTN<br/>MoMo</span>
+</div>
+<div class="flex-1">
+<p class="text-white font-bold text-base group-has-[:checked]:text-mtn-yellow transition-colors">MTN Mobile Money</p>
+<p class="text-slate-400 text-xs">Ending in *8892</p>
+</div>
+<div class="size-6 rounded-full border-2 border-slate-600 flex items-center justify-center peer-checked:border-mtn-yellow peer-checked:bg-mtn-yellow peer-checked:shadow-[0_0_10px_#ffcc00] transition-all">
+<span class="material-symbols-outlined text-black text-[14px] font-bold opacity-0 peer-checked:opacity-100">check</span>
+</div>
+</label>
+<label class="relative flex items-center p-4 rounded-2xl border border-slate-700/50 bg-slate-800/40 backdrop-blur-sm cursor-pointer transition-all hover:bg-slate-800/60 has-[:checked]:border-orange-money has-[:checked]:bg-orange-money/10 has-[:checked]:shadow-[0_0_15px_rgba(255,121,0,0.1)] group">
+<input class="sr-only peer" name="payment" type="radio"/>
+<div class="size-12 rounded-xl bg-[#000000] flex items-center justify-center shrink-0 mr-4 shadow-lg ring-1 ring-white/10 relative overflow-hidden">
+<div class="absolute inset-0 bg-black"></div>
+<div class="absolute bottom-0 right-0 size-8 bg-[#ff7900]"></div>
+<span class="relative font-bold text-white text-xs z-10">OM</span>
+</div>
+<div class="flex-1">
+<p class="text-white font-bold text-base group-has-[:checked]:text-orange-money transition-colors">Orange Money</p>
+<p class="text-slate-400 text-xs">Link new account</p>
+</div>
+<div class="size-6 rounded-full border-2 border-slate-600 flex items-center justify-center peer-checked:border-orange-money peer-checked:bg-orange-money peer-checked:shadow-[0_0_10px_#ff7900] transition-all">
+<span class="material-symbols-outlined text-white text-[14px] font-bold opacity-0 peer-checked:opacity-100">check</span>
+</div>
+</label>
+<button class="w-full flex items-center p-4 rounded-2xl border border-dashed border-slate-700 text-slate-400 hover:bg-slate-800/50 hover:text-white transition-colors hover:border-slate-500">
+<div class="size-12 rounded-xl bg-slate-800 flex items-center justify-center shrink-0 mr-4 border border-slate-700">
+<span class="material-symbols-outlined text-slate-400">add</span>
+</div>
+<span class="font-medium text-sm">Add another payment method</span>
+</button>
+</div>
+</div>
+</div>
+<div class="absolute bottom-0 w-full p-6 bg-[#0f172a]/80 backdrop-blur-xl border-t border-white/5 z-20">
+<button class="w-full bg-gradient-to-r from-[#ff7900] to-[#ff5500] hover:from-[#ff8800] hover:to-[#ff6600] text-white font-bold py-4 rounded-2xl shadow-[0_8px_20px_rgba(255,121,0,0.3)] flex items-center justify-center gap-3 active:scale-[0.98] transition-all border border-white/10 group">
+<span class="text-lg tracking-wide">Pay 1,200 FCFA</span>
+<span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</button>
+<div class="w-1/3 h-1.5 bg-slate-700 rounded-full mx-auto mt-6 mb-1 opacity-50"></div>
+</div>
+</div>
+
+</body></html>
