@@ -43,7 +43,7 @@ export default function AddVehicle() {
                     <InputField
                         name="nickname"
                         control={control}
-                        label="Vehicle Nickname"
+                        label="Vehicle Nickname (Optional)"
                         placeholder="e.g. My Daily Driver"
                         icon="directions-car"
                     />

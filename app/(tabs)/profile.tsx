@@ -71,11 +71,11 @@ export default function Profile() {
 
                 {/* Settings List */}
                 <View style={tw`px-4 py-4 flex-col gap-3`}>
-                    <SettingItem icon="person" title="Account Settings" />
-                    <SettingItem icon="directions-car" title="Vehicle Management" />
-                    <SettingItem icon="account-balance-wallet" title="Payment Methods" />
-                    <SettingItem icon="notifications" title="Notification Preferences" />
-                    <SettingItem icon="support-agent" title="Support & Help" />
+                    <SettingItem onPress={() => router.push('/profile/settings')} icon="person" title="Account Settings" />
+                    <SettingItem onPress={() => router.push('/(tabs)/vehicles')} icon="directions-car" title="Vehicle Management" />
+                    <SettingItem onPress={() => router.push('/(tabs)/wallet')} icon="account-balance-wallet" title="Payment Methods" />
+                    <SettingItem onPress={() => router.push('/profile/settings')} icon="notifications" title="Notification Preferences" />
+                    <SettingItem onPress={() => router.push('/profile/support')} icon="support-agent" title="Support & Help" />
 
                     {/* Logout Button */}
                     <View style={tw`pt-6 pb-8`}>
@@ -87,12 +87,12 @@ export default function Profile() {
     );
 }
 
-function SettingItem({ icon, title }: { icon: keyof typeof MaterialIcons.glyphMap, title: string }) {
+function SettingItem({ icon, title, onPress }: { icon: keyof typeof MaterialIcons.glyphMap, title: string, onPress?: () => void }) {
     return (
-        <TouchableOpacity style={tw`w-full flex-row items-center justify-between p-4 bg-surface-dark rounded-xl border border-white/5 shadow-lg`}>
+        <TouchableOpacity onPress={onPress} style={tw`w-full flex-row items-center justify-between p-4 bg-surface-dark rounded-xl border border-white/5 shadow-lg`}>
             <View style={tw`flex-row items-center gap-4`}>
                 <View style={tw`w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center`}>
-                    <MaterialIcons name={icon} size={20} color="#f97316" />
+                    <MaterialIcons name={icon} size={20} color="#004C70" />
                 </View>
                 <Text style={tw`text-slate-200 font-medium text-base`}>{title}</Text>
             </View>

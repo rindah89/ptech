@@ -3,7 +3,7 @@ import Mapbox from '@rnmapbox/maps';
 import { LinearGradient } from 'expo-linear-gradient';
 import { router } from 'expo-router';
 import React from 'react';
-import { Dimensions, ImageBackground, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { Dimensions, Image, ImageBackground, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { Button } from '../../components/ui/Button';
 import tw from '../../utils/tailwind';
 
@@ -27,11 +27,11 @@ export default function PTechHomeMapView() {
         {/* Top Bar Navigation */}
         <View style={tw`flex-row items-center justify-between`}>
           <View style={tw`flex-row items-center gap-2`}>
-            <View style={[tw`h-9 w-9 rounded-full items-center justify-center border border-primary/30 shadow-sm overflow-hidden`]}>
-              <LinearGradient colors={['#f97316', '#ea580c']} style={tw`absolute inset-0`} />
-              <MaterialIcons name="local-parking" size={20} color="white" />
-            </View>
-            <Text style={tw`text-white text-2xl font-extrabold tracking-tight`}>PTech</Text>
+            <Image
+              source={require('../../assets/images/logofornonwhitebackgounds.png')}
+              style={tw`h-8 w-24`}
+              resizeMode="contain"
+            />
           </View>
 
           <View style={tw`flex-row items-center gap-3`}>
@@ -79,9 +79,6 @@ export default function PTechHomeMapView() {
           </TouchableOpacity>
           <TouchableOpacity style={tw`rounded-full bg-surface-dark/60 px-5 py-2 border border-white/5`}>
             <Text style={tw`text-xs font-medium text-slate-300`}>Covered</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={tw`rounded-full bg-surface-dark/60 px-5 py-2 border border-white/5`}>
-            <Text style={tw`text-xs font-medium text-slate-300`}>Valet</Text>
           </TouchableOpacity>
           <TouchableOpacity style={tw`rounded-full bg-surface-dark/60 px-5 py-2 border border-white/5`}>
             <Text style={tw`text-xs font-medium text-slate-300`}>Cheap</Text>

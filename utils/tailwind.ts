@@ -4,7 +4,7 @@ const tw = create({
     theme: {
         extend: {
             colors: {
-                primary: "#004b73",
+                primary: "#004C70",
                 "primary-dark": "#003b5c",
                 secondary: "#ff6b00",
                 "background-dark": "#0f1115",
