@@ -21,8 +21,7 @@ export default function Settings() {
                     <View style={tw`bg-surface-dark rounded-2xl border border-white/5 overflow-hidden`}>
                         <SettingRow label="First Name" value={user?.firstName || 'User'} />
                         <SettingRow label="Last Name" value={user?.lastName || 'Name'} />
-                        <SettingRow label="Email" value={user?.email || 'email@example.com'} />
-                        <SettingRow label="Phone" value="+237 ••• ••• •••" noBorder />
+                        <SettingRow label="Phone" value={user?.phoneNumber || '+237 670 000 000'} noBorder />
                     </View>
                 </View>
 

@@ -2,7 +2,7 @@ import { MaterialIcons } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Link, router } from 'expo-router';
 import React from 'react';
-import { ImageBackground, Text, TouchableOpacity, View } from 'react-native';
+import { Image, ImageBackground, Text, TouchableOpacity, View } from 'react-native';
 import tw from '../../utils/tailwind';
 
 export default function Discover() {
@@ -11,6 +11,11 @@ export default function Discover() {
             <View style={tw`relative flex-1 w-full max-w-[480px] bg-background-dark mx-auto overflow-hidden`}>
                 {/* Status Bar fake spacer */}
                 <View style={tw`h-12 w-full pt-4`} />
+
+                {/* PTech Logo */}
+                <View style={tw`w-full items-center pt-4 z-20`}>
+                    <Image source={require('../../assets/images/logofornonwhitebackgounds.png')} style={tw`w-40 h-16`} resizeMode="contain" />
+                </View>
 
                 {/* Skip Button */}
                 <View style={tw`w-full px-6 pt-4 z-10 items-end`}>

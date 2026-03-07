@@ -17,11 +17,11 @@ export default function SignIn() {
 
     const { control, handleSubmit } = useForm<LoginFormData>({
         resolver: zodResolver(loginSchema),
-        defaultValues: { email: '', password: '' }
+        defaultValues: { phoneNumber: '', password: '' }
     });
 
     const onSubmit = async (data: LoginFormData) => {
-        await login(data.email);
+        await login(data.phoneNumber);
         router.replace('/(tabs)');
     };
 
@@ -59,13 +59,13 @@ export default function SignIn() {
 
                 <View style={tw`bg-[#1e1e1e]/80 p-6 rounded-3xl border border-white/10 shadow-xl overflow-hidden`}>
                     <InputField
-                        name="email"
+                        name="phoneNumber"
                         control={control}
-                        label="Email Address"
-                        placeholder="Enter your email"
-                        keyboardType="email-address"
+                        label="Phone Number"
+                        placeholder="Enter your phone number"
+                        keyboardType="phone-pad"
                         autoCapitalize="none"
-                        icon="email"
+                        icon="phone"
                     />
 
                     <InputField

@@ -17,7 +17,7 @@ export default function SignUp() {
 
     const { control, handleSubmit } = useForm<RegisterFormData>({
         resolver: zodResolver(registerSchema),
-        defaultValues: { firstName: '', lastName: '', email: '', password: '' }
+        defaultValues: { firstName: '', lastName: '', phoneNumber: '', password: '' }
     });
 
     const onSubmit = async (data: RegisterFormData) => {
@@ -73,13 +73,13 @@ export default function SignUp() {
                         </View>
 
                         <InputField
-                            name="email"
+                            name="phoneNumber"
                             control={control}
-                            label="Email Address"
-                            placeholder="Enter your email"
-                            keyboardType="email-address"
+                            label="Phone Number"
+                            placeholder="Enter your phone number"
+                            keyboardType="phone-pad"
                             autoCapitalize="none"
-                            icon="email"
+                            icon="phone"
                         />
 
                         <InputField

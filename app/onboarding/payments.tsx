@@ -1,7 +1,7 @@
 import { MaterialIcons } from '@expo/vector-icons';
 import { Link, router } from 'expo-router';
 import React from 'react';
-import { Text, TouchableOpacity, View } from 'react-native';
+import { Image, Text, TouchableOpacity, View } from 'react-native';
 import tw from '../../utils/tailwind';
 
 export default function Payments() {
@@ -10,6 +10,11 @@ export default function Payments() {
             <View style={tw`relative flex-1 w-full max-w-md p-6 bg-background-dark`}>
                 {/* Status Bar Fake Spacer */}
                 <View style={tw`h-12 w-full pt-4`} />
+
+                {/* PTech Logo */}
+                <View style={tw`w-full items-center pt-4 z-20`}>
+                    <Image source={require('../../assets/images/logofornonwhitebackgounds.png')} style={tw`w-40 h-16`} resizeMode="contain" />
+                </View>
 
                 {/* Header / Skip */}
                 <View style={tw`flex-row w-full items-center justify-end z-10`}>

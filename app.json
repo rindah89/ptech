@@ -10,7 +10,10 @@
     "newArchEnabled": true,
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.rindah89.PTECH"
+      "bundleIdentifier": "com.rindah89.PTECH",
+      "infoPlist": {
+        "ITSAppUsesNonExemptEncryption": false
+      }
     },
     "android": {
       "adaptiveIcon": {
@@ -32,13 +35,13 @@
       [
         "expo-splash-screen",
         {
-          "image": "./assets/images/logoforwhitebackgrounds.png",
+          "image": "./assets/images/logofornonwhitebackgounds.png",
           "imageWidth": 200,
           "resizeMode": "contain",
-          "backgroundColor": "#ffffff",
+          "backgroundColor": "#004C70",
           "dark": {
             "image": "./assets/images/logofornonwhitebackgounds.png",
-            "backgroundColor": "#000000"
+            "backgroundColor": "#004C70"
           }
         }
       ],
@@ -47,6 +50,12 @@
     "experiments": {
       "typedRoutes": true,
       "reactCompiler": true
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "022cc575-d5b5-471b-9452-6b74c5a4ad78"
+      }
     }
   }
 }

@@ -5,7 +5,7 @@ interface AuthState {
     user: User | null;
     isAuthenticated: boolean;
     isLoading: boolean;
-    login: (email: string) => Promise<void>;
+    login: (phoneNumber: string) => Promise<void>;
     logout: () => void;
     register: (user: Partial<User>) => Promise<void>;
     updateBalance: (amount: number) => void;
@@ -14,7 +14,7 @@ interface AuthState {
 // Mock User for Dev
 const MOCK_USER: User = {
     id: 'usr_123',
-    email: 'remy@example.com',
+    phoneNumber: '670000000',
     firstName: 'Remy',
     lastName: 'Ngwanyam',
     balance: 14500,
@@ -25,7 +25,7 @@ export const useAuthStore = create<AuthState>((set) => ({
     isAuthenticated: false,
     isLoading: false,
 
-    login: async (email: string) => {
+    login: async (phoneNumber: string) => {
         set({ isLoading: true });
         // Simulate API call
         await new Promise((resolve) => setTimeout(resolve, 800));
@@ -41,7 +41,7 @@ export const useAuthStore = create<AuthState>((set) => ({
         await new Promise((resolve) => setTimeout(resolve, 800));
         const newUser: User = {
             id: Math.random().toString(36).substr(2, 9),
-            email: userData.email || '',
+            phoneNumber: userData.phoneNumber || '',
             firstName: userData.firstName || '',
             lastName: userData.lastName || '',
             balance: 0,

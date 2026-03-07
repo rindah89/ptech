@@ -51,7 +51,7 @@ export default function Profile() {
                             </View>
 
                             <Text style={tw`text-white text-xl font-bold text-center mb-1`}>{user?.firstName} {user?.lastName}</Text>
-                            <Text style={tw`text-slate-400 text-sm font-medium text-center mb-4`}>{user?.email}</Text>
+                            <Text style={tw`text-slate-400 text-sm font-medium text-center mb-4`}>{user?.phoneNumber}</Text>
 
                             <View style={tw`w-full flex-row justify-center gap-4`}>
                                 <View style={tw`flex-col items-center p-3 bg-slate-800/50 rounded-xl w-24 border border-white/5`}>
