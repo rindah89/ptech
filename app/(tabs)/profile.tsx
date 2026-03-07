@@ -5,10 +5,12 @@ import React from 'react';
 import { Image, ScrollView, Text, TouchableOpacity, View } from 'react-native';
 import { Button } from '../../components/ui/Button';
 import { useAuthStore } from '../../store/authStore';
+import { useParkingStore } from '../../store/parkingStore';
 import tw from '../../utils/tailwind';
 
 export default function Profile() {
     const user = useAuthStore(state => state.user);
+    const history = useParkingStore(state => state.history);
     const logout = useAuthStore(state => state.logout);
 
     const handleLogout = () => {
@@ -55,7 +57,7 @@ export default function Profile() {
 
                             <View style={tw`w-full flex-row justify-center gap-4`}>
                                 <View style={tw`flex-col items-center p-3 bg-slate-800/50 rounded-xl w-24 border border-white/5`}>
-                                    <Text style={tw`text-primary font-bold text-lg`}>12</Text>
+                                    <Text style={tw`text-primary font-bold text-lg`}>{history.length}</Text>
                                     <Text style={tw`text-xs text-slate-400`}>Parkings</Text>
                                 </View>
                                 <View style={tw`flex-col items-center p-3 bg-slate-800/50 rounded-xl w-24 border border-white/5`}>

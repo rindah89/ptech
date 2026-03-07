@@ -9,6 +9,11 @@ import tw from '../../utils/tailwind';
 export default function Vehicles() {
     const vehicles = useParkingStore(state => state.vehicles);
     const removeVehicle = useParkingStore(state => state.removeVehicle);
+    const fetchVehicles = useParkingStore(state => state.fetchVehicles);
+
+    React.useEffect(() => {
+        fetchVehicles();
+    }, [fetchVehicles]);
 
     const getIconForType = (type: string) => {
         switch (type) {

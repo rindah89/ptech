@@ -3,6 +3,7 @@ import { User } from '../types';
 
 interface AuthState {
     user: User | null;
+    token: string | null;
     isAuthenticated: boolean;
     isLoading: boolean;
     login: (phoneNumber: string, password?: string) => Promise<void>;
@@ -15,6 +16,7 @@ const API_URL = process.env.EXPO_PUBLIC_API_URL || 'http://localhost:8000/api';
 
 export const useAuthStore = create<AuthState>((set) => ({
     user: null,
+    token: null,
     isAuthenticated: false,
     isLoading: false,
 
@@ -39,9 +41,9 @@ export const useAuthStore = create<AuthState>((set) => ({
             }
 
             const data = await response.json();
-            // Store data.access_token securely here eventually
-            // Fetch user profile could be done here, for now mock user
+            const token = data.access_token;
 
+            // Fetch user profile could be done here, for now mock user using the form data
             const MOCK_USER: User = {
                 id: 'usr_123',
                 phoneNumber: phoneNumber,
@@ -49,7 +51,7 @@ export const useAuthStore = create<AuthState>((set) => ({
                 lastName: '',
                 balance: 0,
             };
-            set({ user: MOCK_USER, isAuthenticated: true, isLoading: false });
+            set({ user: MOCK_USER, token: token, isAuthenticated: true, isLoading: false });
         } catch (error) {
             set({ isLoading: false });
             console.error('Login error:', error);
@@ -58,7 +60,7 @@ export const useAuthStore = create<AuthState>((set) => ({
     },
 
     logout: () => {
-        set({ user: null, isAuthenticated: false });
+        set({ user: null, token: null, isAuthenticated: false });
     },
 
     register: async (userData: Partial<User> & { password?: string }) => {

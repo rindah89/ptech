@@ -1,61 +1,180 @@
 import { create } from 'zustand';
 import { ParkingSession, Vehicle } from '../types';
+import { useAuthStore } from './authStore';
 
 interface ParkingState {
     vehicles: Vehicle[];
     activeSession: ParkingSession | null;
     history: ParkingSession[];
+    isLoading: boolean;
+    error: string | null;
 
-    addVehicle: (vehicle: Omit<Vehicle, 'id' | 'userId'>) => void;
-    removeVehicle: (id: string) => void;
+    fetchVehicles: () => Promise<void>;
+    fetchTransactions: () => Promise<void>;
+    addVehicle: (vehicle: Omit<Vehicle, 'id' | 'userId'>) => Promise<void>;
+    removeVehicle: (id: string) => Promise<void>;
 
-    startSession: (session: Omit<ParkingSession, 'id' | 'status'>) => void;
-    endSession: () => void;
+    startSession: (session: Omit<ParkingSession, 'id' | 'status'>) => Promise<void>;
+    endSession: (sessionId: string) => Promise<void>;
     extendSession: (additionalMinutes: number, additionalCost: number) => void;
 }
 
-// Mock Initial Data
-const INITIAL_VEHICLES: Vehicle[] = [
-    { id: 'veh_1', userId: 'usr_123', plateNumber: 'LT-012-AB', nickname: 'My Toyota', type: 'Car', isDefault: true },
-    { id: 'veh_2', userId: 'usr_123', plateNumber: 'CE-456-XY', nickname: 'Work Truck', type: 'Truck', isDefault: false },
-];
+const API_URL = process.env.EXPO_PUBLIC_API_URL || 'http://localhost:8000/api';
 
-export const useParkingStore = create<ParkingState>((set) => ({
-    vehicles: INITIAL_VEHICLES,
+export const useParkingStore = create<ParkingState>((set, get) => ({
+    vehicles: [],
     activeSession: null,
     history: [],
+    isLoading: false,
+    error: null,
 
-    addVehicle: (vehicleData) => {
-        const newVehicle: Vehicle = {
-            ...vehicleData,
-            id: Math.random().toString(36).substr(2, 9),
-            userId: 'usr_123', // Hardcoded to mock user
-        };
-        set((state) => ({ vehicles: [...state.vehicles, newVehicle] }));
+    fetchTransactions: async () => {
+        const token = useAuthStore.getState().token;
+        if (!token) return;
+
+        set({ isLoading: true, error: null });
+        try {
+            const response = await fetch(`${API_URL}/transactions/`, {
+                headers: { 'Authorization': `Bearer ${token}` }
+            });
+            if (!response.ok) throw new Error('Failed to fetch transactions');
+            const data = await response.json();
+
+            // Map backend transactions to history format
+            const formattedHistory: ParkingSession[] = data.map((t: any) => ({
+                id: t.id,
+                vehicleId: t.type, // Map appropriate fields, assuming type or reference
+                location: t.description || 'Parking Session',
+                startTime: new Date(t.created_at),
+                durationMinutes: 0, // Transaction doesn't have duration directly
+                cost: parseFloat(t.amount),
+                status: t.status.toUpperCase(),
+            }));
+
+            set({ history: formattedHistory, isLoading: false });
+        } catch (error: any) {
+            set({ error: error.message, isLoading: false });
+        }
     },
 
-    removeVehicle: (id) => {
+    fetchVehicles: async () => {
+        const token = useAuthStore.getState().token;
+        if (!token) return;
+
+        set({ isLoading: true, error: null });
+        try {
+            const response = await fetch(`${API_URL}/vehicles/`, {
+                headers: { 'Authorization': `Bearer ${token}` }
+            });
+            if (!response.ok) throw new Error('Failed to fetch vehicles');
+            const data = await response.json();
+
+            // Map backend response 
+            const formattedVehicles: Vehicle[] = data.map((v: any) => ({
+                id: v.id,
+                userId: v.owner_id,
+                plateNumber: v.plate_number,
+                nickname: v.nickname || '',
+                type: v.type, // Make sure backend enum matches DB
+                isDefault: v.is_default
+            }));
+
+            set({ vehicles: formattedVehicles, isLoading: false });
+        } catch (error: any) {
+            set({ error: error.message, isLoading: false });
+        }
+    },
+
+    addVehicle: async (vehicleData) => {
+        const token = useAuthStore.getState().token;
+        if (!token) return;
+
+        set({ isLoading: true, error: null });
+        try {
+            const response = await fetch(`${API_URL}/vehicles/`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                },
+                body: JSON.stringify({
+                    plate_number: vehicleData.plateNumber,
+                    nickname: vehicleData.nickname,
+                    type: vehicleData.type.toLowerCase(),
+                    is_default: vehicleData.isDefault
+                })
+            });
+            if (!response.ok) throw new Error('Failed to add vehicle');
+            await get().fetchVehicles(); // refresh list
+        } catch (error: any) {
+            set({ error: error.message, isLoading: false });
+        }
+    },
+
+    removeVehicle: async (id) => {
+        // PTECH backend currently does not have DELETE /vehicles route. Mocking UI update for now.
         set((state) => ({ vehicles: state.vehicles.filter((v) => v.id !== id) }));
     },
 
-    startSession: (sessionData) => {
-        const newSession: ParkingSession = {
-            ...sessionData,
-            id: 'sess_' + Math.random().toString(36).substr(2, 9),
-            status: 'ACTIVE',
-        };
-        set({ activeSession: newSession });
+    startSession: async (sessionData) => {
+        const token = useAuthStore.getState().token;
+        if (!token) return;
+
+        set({ isLoading: true, error: null });
+        try {
+            const response = await fetch(`${API_URL}/parking/start`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                },
+                body: JSON.stringify({
+                    vehicle_id: sessionData.vehicleId,
+                    zone: sessionData.location,
+                    duration_minutes: sessionData.durationMinutes,
+                    cost: sessionData.cost
+                })
+            });
+            if (!response.ok) throw new Error('Failed to start session');
+            const data = await response.json();
+
+            set({
+                activeSession: {
+                    ...sessionData,
+                    id: data.id,
+                    status: 'ACTIVE',
+                },
+                isLoading: false
+            });
+        } catch (error: any) {
+            set({ error: error.message, isLoading: false });
+        }
     },
 
-    endSession: () => {
-        set((state) => {
-            if (!state.activeSession) return state;
-            const completedSession: ParkingSession = { ...state.activeSession, status: 'COMPLETED' };
-            return {
-                activeSession: null,
-                history: [completedSession, ...state.history],
-            };
-        });
+    endSession: async (sessionId) => {
+        const token = useAuthStore.getState().token;
+        if (!token) return;
+
+        set({ isLoading: true, error: null });
+        try {
+            const response = await fetch(`${API_URL}/parking/${sessionId}/stop`, {
+                method: 'POST',
+                headers: { 'Authorization': `Bearer ${token}` }
+            });
+            if (!response.ok) throw new Error('Failed to end session');
+
+            set((state) => {
+                if (!state.activeSession) return state;
+                const completedSession: ParkingSession = { ...state.activeSession, status: 'COMPLETED' };
+                return {
+                    activeSession: null,
+                    history: [completedSession, ...state.history],
+                    isLoading: false
+                };
+            });
+        } catch (error: any) {
+            set({ error: error.message, isLoading: false });
+        }
     },
 
     extendSession: (additionalMinutes, additionalCost) => {

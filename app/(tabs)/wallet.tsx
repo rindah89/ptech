@@ -4,10 +4,17 @@ import React from 'react';
 import { ScrollView, Text, TouchableOpacity, View } from 'react-native';
 import { Button } from '../../components/ui/Button';
 import { useAuthStore } from '../../store/authStore';
+import { useParkingStore } from '../../store/parkingStore';
 import tw from '../../utils/tailwind';
 
 export default function Wallet() {
     const user = useAuthStore(state => state.user);
+    const parkingHistory = useParkingStore(state => state.history);
+    const fetchTransactions = useParkingStore(state => state.fetchTransactions);
+
+    React.useEffect(() => {
+        fetchTransactions();
+    }, [fetchTransactions]);
 
     return (
         <View style={tw`flex-1 bg-background-dark overflow-hidden`}>
@@ -112,9 +119,23 @@ export default function Wallet() {
                     </View>
 
                     <View style={tw`bg-surface-dark rounded-2xl shadow-lg border border-white/5 overflow-hidden`}>
-                        <HistoryItem icon="local-parking" color="red" title="Douala Grand Mall" time="Today, 14:30" amount="- 500" />
-                        <HistoryItem icon="account-balance-wallet" color="green" title="Wallet Top Up (MTN)" time="Yesterday, 09:15" amount="+ 10,000" />
-                        <HistoryItem icon="local-parking" color="red" title="Akwa Palace Parking" time="Oct 24, 18:45" amount="- 1,200" isLast />
+                        {parkingHistory.length === 0 ? (
+                            <View style={tw`p-6 items-center justify-center`}>
+                                <Text style={tw`text-slate-400 text-sm`}>No recent transactions</Text>
+                            </View>
+                        ) : (
+                            parkingHistory.slice(0, 3).map((session: any, index: number, arr: any[]) => (
+                                <HistoryItem
+                                    key={session.id}
+                                    icon="local-parking"
+                                    color="red"
+                                    title={session.location}
+                                    time={new Date(session.startTime).toLocaleDateString()}
+                                    amount={`- ${session.cost}`}
+                                    isLast={index === arr.length - 1}
+                                />
+                            ))
+                        )}
                     </View>
                 </View>
             </ScrollView>

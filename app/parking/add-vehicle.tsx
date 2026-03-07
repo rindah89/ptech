@@ -20,8 +20,8 @@ export default function AddVehicle() {
         defaultValues: { plateNumber: '', nickname: '', type: 'Car', isDefault: false }
     });
 
-    const onSubmit = (data: any) => {
-        addVehicle(data);
+    const onSubmit = async (data: any) => {
+        await addVehicle(data);
         router.back();
     };
 

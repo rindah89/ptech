@@ -10,6 +10,11 @@ import tw from '../../utils/tailwind';
 export default function History() {
     const activeSession = useParkingStore(state => state.activeSession);
     const history = useParkingStore(state => state.history);
+    const fetchTransactions = useParkingStore(state => state.fetchTransactions);
+
+    React.useEffect(() => {
+        fetchTransactions();
+    }, [fetchTransactions]);
 
     const formatDate = (date: Date) => {
         return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });

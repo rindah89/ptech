@@ -6,7 +6,7 @@ from decimal import Decimal
 from ..models.user import UserRole
 
 class UserBase(BaseModel):
-    email: EmailStr
+    phone_number: str = Field(..., min_length=9, max_length=20)
     first_name: str = Field(..., min_length=1, max_length=100)
     last_name: str = Field(..., min_length=1, max_length=100)
 
