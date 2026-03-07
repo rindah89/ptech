@@ -21,7 +21,7 @@ export default function SignIn() {
     });
 
     const onSubmit = async (data: LoginFormData) => {
-        await login(data.phoneNumber);
+        await login(data.phoneNumber, data.password);
         router.replace('/(tabs)');
     };
 

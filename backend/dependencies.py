@@ -28,13 +28,13 @@ async def get_current_user(
     )
     try:
         payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
-        email: str | None = payload.get("sub")
-        if email is None:
+        phone_number: str | None = payload.get("sub")
+        if phone_number is None:
             raise credentials_exception
     except JWTError:
         raise credentials_exception
         
-    user = await user_service.get_user_by_email(db, email=email)
+    user = await user_service.get_user_by_phone_number(db, phone_number=phone_number)
     if user is None:
         raise credentials_exception
     return user

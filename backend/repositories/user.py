@@ -6,8 +6,8 @@ from ..models.user import User
 from ..schemas.user import UserCreate, UserBase
 
 class UserRepository(BaseRepository[User, UserCreate, UserBase]):
-    async def get_by_email(self, db: AsyncSession, email: str) -> Optional[User]:
-        query = select(self.model).where(self.model.email == email)
+    async def get_by_phone_number(self, db: AsyncSession, phone_number: str) -> Optional[User]:
+        query = select(self.model).where(self.model.phone_number == phone_number)
         result = await db.execute(query)
         return result.scalar_first()
 

@@ -12,7 +12,7 @@ class UserRole(str, enum.Enum):
 class User(Base, UUIDMixin, TimestampMixin):
     __tablename__ = "users"
 
-    email = Column(String(255), unique=True, index=True, nullable=False)
+    phone_number = Column(String(20), unique=True, index=True, nullable=False)
     hashed_password = Column(String(255), nullable=False)
     first_name = Column(String(100), nullable=False)
     last_name = Column(String(100), nullable=False)
