@@ -1,4 +1,4 @@
-version: '3.8'
+version: "3.8"
 
 services:
   db:
@@ -15,7 +15,7 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '1.5'
+          cpus: "1.5"
           memory: 1024M
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
@@ -36,14 +36,11 @@ services:
     working_dir: /app
     environment:
       # We use asyncpg for fastapi async operations
-      DATABASE_URL: postgresql+asyncpg://ptech_user:ptech_password@db:5432/ptech_db
+      DATABASE_URL: ${DATABASE_URL}
       SECRET_KEY: super_secret_key_change_in_production
       ALGORITHM: HS256
       ACCESS_TOKEN_EXPIRE_MINUTES: 30
       PYTHONPATH: /app
-    depends_on:
-      db:
-        condition: service_healthy
 
 volumes:
   postgres_data:

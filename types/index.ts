@@ -4,6 +4,7 @@ export interface User {
     firstName: string;
     lastName: string;
     balance: number;
+    role: 'user' | 'agent' | 'admin';
 }
 
 export interface Vehicle {

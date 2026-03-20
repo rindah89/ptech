@@ -1,5 +1,6 @@
 import { create } from 'zustand';
 import { ParkingSession, Vehicle } from '../types';
+import { supabase } from '../utils/supabase';
 import { useAuthStore } from './authStore';
 
 interface ParkingState {
@@ -19,8 +20,6 @@ interface ParkingState {
     extendSession: (additionalMinutes: number, additionalCost: number) => void;
 }
 
-const API_URL = process.env.EXPO_PUBLIC_API_URL || 'http://localhost:8000/api';
-
 export const useParkingStore = create<ParkingState>((set, get) => ({
     vehicles: [],
     activeSession: null,
@@ -29,24 +28,27 @@ export const useParkingStore = create<ParkingState>((set, get) => ({
     error: null,
 
     fetchTransactions: async () => {
-        const token = useAuthStore.getState().token;
-        if (!token) return;
+        const user = useAuthStore.getState().user;
+        if (!user) return;
 
         set({ isLoading: true, error: null });
         try {
-            const response = await fetch(`${API_URL}/transactions/`, {
-                headers: { 'Authorization': `Bearer ${token}` }
-            });
-            if (!response.ok) throw new Error('Failed to fetch transactions');
-            const data = await response.json();
+            const { data, error } = await supabase
+                .from('transactions')
+                .select('*')
+                .eq('user_id', user.id)
+                .order('created_at', { ascending: false });
 
-            // Map backend transactions to history format
+            if (error) throw error;
+
             const formattedHistory: ParkingSession[] = data.map((t: any) => ({
                 id: t.id,
-                vehicleId: t.type, // Map appropriate fields, assuming type or reference
-                location: t.description || 'Parking Session',
+                userId: t.user_id,
+                vehicleId: t.type,
+                zone: 'Transaction',
+                location: t.reference || 'Wallet Tx',
                 startTime: new Date(t.created_at),
-                durationMinutes: 0, // Transaction doesn't have duration directly
+                durationMinutes: 0,
                 cost: parseFloat(t.amount),
                 status: t.status.toUpperCase(),
             }));
@@ -58,25 +60,25 @@ export const useParkingStore = create<ParkingState>((set, get) => ({
     },
 
     fetchVehicles: async () => {
-        const token = useAuthStore.getState().token;
-        if (!token) return;
+        const user = useAuthStore.getState().user;
+        if (!user) return;
 
         set({ isLoading: true, error: null });
         try {
-            const response = await fetch(`${API_URL}/vehicles/`, {
-                headers: { 'Authorization': `Bearer ${token}` }
-            });
-            if (!response.ok) throw new Error('Failed to fetch vehicles');
-            const data = await response.json();
+            const { data, error } = await supabase
+                .from('vehicles')
+                .select('*')
+                .eq('user_id', user.id);
 
-            // Map backend response 
+            if (error) throw error;
+
             const formattedVehicles: Vehicle[] = data.map((v: any) => ({
                 id: v.id,
-                userId: v.owner_id,
-                plateNumber: v.plate_number,
-                nickname: v.nickname || '',
-                type: v.type, // Make sure backend enum matches DB
-                isDefault: v.is_default
+                userId: v.user_id,
+                plateNumber: v.license_plate,
+                nickname: v.make || '',
+                type: 'Car',
+                isDefault: false
             }));
 
             set({ vehicles: formattedVehicles, isLoading: false });
@@ -86,62 +88,74 @@ export const useParkingStore = create<ParkingState>((set, get) => ({
     },
 
     addVehicle: async (vehicleData) => {
-        const token = useAuthStore.getState().token;
-        if (!token) return;
+        const user = useAuthStore.getState().user;
+        if (!user) return;
 
         set({ isLoading: true, error: null });
         try {
-            const response = await fetch(`${API_URL}/vehicles/`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${token}`
-                },
-                body: JSON.stringify({
-                    plate_number: vehicleData.plateNumber,
-                    nickname: vehicleData.nickname,
-                    type: vehicleData.type.toLowerCase(),
-                    is_default: vehicleData.isDefault
-                })
-            });
-            if (!response.ok) throw new Error('Failed to add vehicle');
-            await get().fetchVehicles(); // refresh list
+            const { error } = await supabase
+                .from('vehicles')
+                .insert([{
+                    user_id: user.id,
+                    license_plate: vehicleData.plateNumber,
+                    make: vehicleData.nickname,
+                    model: vehicleData.type,
+                }]);
+
+            if (error) throw error;
+            await get().fetchVehicles();
         } catch (error: any) {
             set({ error: error.message, isLoading: false });
         }
     },
 
     removeVehicle: async (id) => {
-        // PTECH backend currently does not have DELETE /vehicles route. Mocking UI update for now.
-        set((state) => ({ vehicles: state.vehicles.filter((v) => v.id !== id) }));
+        set({ isLoading: true, error: null });
+        try {
+            const { error } = await supabase
+                .from('vehicles')
+                .delete()
+                .eq('id', id);
+
+            if (error) throw error;
+            set((state) => ({
+                vehicles: state.vehicles.filter((v) => v.id !== id),
+                isLoading: false
+            }));
+        } catch (error: any) {
+            set({ error: error.message, isLoading: false });
+        }
     },
 
     startSession: async (sessionData) => {
-        const token = useAuthStore.getState().token;
-        if (!token) return;
+        const user = useAuthStore.getState().user;
+        if (!user) return;
 
         set({ isLoading: true, error: null });
         try {
-            const response = await fetch(`${API_URL}/parking/start`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${token}`
-                },
-                body: JSON.stringify({
+            const startTime = new Date();
+            const endTime = new Date(startTime.getTime() + sessionData.durationMinutes * 60000);
+
+            const { data, error } = await supabase
+                .from('parking_sessions')
+                .insert([{
                     vehicle_id: sessionData.vehicleId,
-                    zone: sessionData.location,
-                    duration_minutes: sessionData.durationMinutes,
-                    cost: sessionData.cost
-                })
-            });
-            if (!response.ok) throw new Error('Failed to start session');
-            const data = await response.json();
+                    zone: sessionData.zone || sessionData.location,
+                    start_time: startTime.toISOString(),
+                    end_time: endTime.toISOString(),
+                    total_cost: sessionData.cost,
+                    status: 'active'
+                }])
+                .select()
+                .single();
+
+            if (error) throw error;
 
             set({
                 activeSession: {
                     ...sessionData,
                     id: data.id,
+                    startTime: new Date(data.start_time),
                     status: 'ACTIVE',
                 },
                 isLoading: false
@@ -152,16 +166,17 @@ export const useParkingStore = create<ParkingState>((set, get) => ({
     },
 
     endSession: async (sessionId) => {
-        const token = useAuthStore.getState().token;
-        if (!token) return;
-
         set({ isLoading: true, error: null });
         try {
-            const response = await fetch(`${API_URL}/parking/${sessionId}/stop`, {
-                method: 'POST',
-                headers: { 'Authorization': `Bearer ${token}` }
-            });
-            if (!response.ok) throw new Error('Failed to end session');
+            const { error } = await supabase
+                .from('parking_sessions')
+                .update({
+                    status: 'completed',
+                    end_time: new Date().toISOString()
+                })
+                .eq('id', sessionId);
+
+            if (error) throw error;
 
             set((state) => {
                 if (!state.activeSession) return state;
@@ -177,16 +192,36 @@ export const useParkingStore = create<ParkingState>((set, get) => ({
         }
     },
 
-    extendSession: (additionalMinutes, additionalCost) => {
-        set((state) => {
-            if (!state.activeSession) return state;
-            return {
-                activeSession: {
+    extendSession: async (additionalMinutes, additionalCost) => {
+        const activeSession = get().activeSession;
+        if (!activeSession) return;
+
+        set({ isLoading: true });
+        try {
+            const newDuration = activeSession.durationMinutes + additionalMinutes;
+            const newCost = activeSession.cost + additionalCost;
+            const newEndTime = new Date(activeSession.startTime.getTime() + newDuration * 60000);
+
+            const { error } = await supabase
+                .from('parking_sessions')
+                .update({
+                    end_time: newEndTime.toISOString(),
+                    total_cost: newCost
+                })
+                .eq('id', activeSession.id);
+
+            if (error) throw error;
+
+            set((state) => ({
+                activeSession: state.activeSession ? {
                     ...state.activeSession,
-                    durationMinutes: state.activeSession.durationMinutes + additionalMinutes,
-                    cost: state.activeSession.cost + additionalCost,
-                }
-            };
-        });
+                    durationMinutes: newDuration,
+                    cost: newCost,
+                } : null,
+                isLoading: false
+            }));
+        } catch (error: any) {
+            set({ error: error.message, isLoading: false });
+        }
     },
 }));
