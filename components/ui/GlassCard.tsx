@@ -34,8 +34,15 @@ export function GlassCard({
     return (
         <View
             style={[
-                tw`rounded-2xl border border-white/5 overflow-hidden shadow-glass relative`,
+                tw`rounded-2xl border border-white/5 overflow-hidden relative`,
                 tw`${bgClasses[variant]} ${paddingClasses[padding]}`,
+                {
+                    shadowColor: '#000',
+                    shadowOffset: { width: 0, height: 4 },
+                    shadowOpacity: 0.3,
+                    shadowRadius: 15,
+                    elevation: 8,
+                },
                 style
             ]}
             {...props}

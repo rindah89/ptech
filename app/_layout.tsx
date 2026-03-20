@@ -44,8 +44,22 @@ export default function RootLayout() {
     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
       <Stack screenOptions={{ headerShown: false }}>
         <Stack.Screen name="(tabs)" />
+        <Stack.Screen name="index" />
         <Stack.Screen name="modal" options={{ presentation: 'modal', title: 'Modal' }} />
         <Stack.Screen name="onboarding" />
+        <Stack.Screen name="admin" />
+        <Stack.Screen name="agent" />
+        <Stack.Screen name="auth/sign-in" />
+        <Stack.Screen name="auth/sign-up" />
+        <Stack.Screen name="parking/active" />
+        <Stack.Screen name="parking/add-vehicle" />
+        <Stack.Screen name="parking/duration" />
+        <Stack.Screen name="parking/expiring" />
+        <Stack.Screen name="parking/receipt" />
+        <Stack.Screen name="parking/scanner" />
+        <Stack.Screen name="parking/success" />
+        <Stack.Screen name="profile/settings" />
+        <Stack.Screen name="profile/support" />
       </Stack>
       <StatusBar style="auto" />
     </ThemeProvider>

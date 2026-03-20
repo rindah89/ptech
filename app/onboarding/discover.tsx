@@ -1,6 +1,5 @@
 import { MaterialIcons } from '@expo/vector-icons';
 import { Link, router } from 'expo-router';
-import LottieView from 'lottie-react-native';
 import React from 'react';
 import { Image, Text, TouchableOpacity, View } from 'react-native';
 import tw from '../../utils/tailwind';
@@ -11,11 +10,6 @@ export default function Discover() {
             <View style={tw`relative flex-1 w-full max-w-[480px] bg-background-dark mx-auto overflow-hidden`}>
                 {/* Status Bar fake spacer */}
                 <View style={tw`h-12 w-full pt-4`} />
-
-                {/* PTech Logo */}
-                <View style={tw`w-full items-center pt-4 z-20`}>
-                    <Image source={require('../../assets/images/logofornonwhitebackgounds.png')} style={tw`w-40 h-16`} resizeMode="contain" />
-                </View>
 
                 {/* Skip Button */}
                 <View style={tw`w-full px-6 pt-4 z-10 items-end`}>
@@ -28,14 +22,9 @@ export default function Discover() {
 
                 {/* Main Content Area */}
                 <View style={tw`flex-1 flex-col justify-center items-center px-6 z-0`}>
-                    {/* Illustration Container */}
-                    <View style={tw`w-full aspect-square relative mb-8 items-center justify-center`}>
-                        <LottieView
-                            source={{ uri: 'https://lottie.host/e2ba2a93-780c-43f9-ba20-2804b786ebbb/B3H5v0qWn9.json' }}
-                            autoPlay
-                            loop
-                            style={tw`w-full h-full`}
-                        />
+                    {/* Logo */}
+                    <View style={tw`mb-12 items-center justify-center`}>
+                        <Image source={require('../../assets/images/logofornonwhitebackgounds.png')} style={tw`w-64 h-28`} resizeMode="contain" />
                     </View>
 
                     {/* Text Content */}
@@ -72,3 +61,4 @@ export default function Discover() {
         </View>
     );
 }
+

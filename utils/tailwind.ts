@@ -22,7 +22,7 @@ const tw = create({
             },
             fontFamily: {
                 display: ["System"], // Fallback to system if custom fonts aren't loaded yet
-            }
+            },
         }
     }
 });

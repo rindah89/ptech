@@ -2,7 +2,7 @@ import { MaterialIcons } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
 import { router } from 'expo-router';
 import React from 'react';
-import { Image, ScrollView, Text, TouchableOpacity, View } from 'react-native';
+import { Image, SafeAreaView, ScrollView, Text, TouchableOpacity, View } from 'react-native';
 import { Button } from '../../components/ui/Button';
 import { useAuthStore } from '../../store/authStore';
 import { useParkingStore } from '../../store/parkingStore';
@@ -19,7 +19,7 @@ export default function Profile() {
     };
 
     return (
-        <View style={tw`bg-background-dark h-full w-full flex-1 overflow-hidden`}>
+        <SafeAreaView style={tw`bg-background-dark h-full w-full flex-1 overflow-hidden`}>
             <ScrollView contentContainerStyle={tw`pb-20`} style={tw`flex-1`}>
                 {/* Header Section */}
                 <LinearGradient
@@ -99,7 +99,7 @@ export default function Profile() {
                     </View>
                 </View>
             </ScrollView>
-        </View>
+        </SafeAreaView>
     );
 }
 
