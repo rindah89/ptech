@@ -1,8 +1,8 @@
 import { MaterialIcons } from '@expo/vector-icons';
-import { LinearGradient } from 'expo-linear-gradient';
 import { Link, router } from 'expo-router';
+import LottieView from 'lottie-react-native';
 import React from 'react';
-import { Image, ImageBackground, Text, TouchableOpacity, View } from 'react-native';
+import { Image, Text, TouchableOpacity, View } from 'react-native';
 import tw from '../../utils/tailwind';
 
 export default function Discover() {
@@ -30,24 +30,19 @@ export default function Discover() {
                 <View style={tw`flex-1 flex-col justify-center items-center px-6 z-0`}>
                     {/* Illustration Container */}
                     <View style={tw`w-full aspect-square relative mb-8 items-center justify-center`}>
-                        <View style={tw`absolute inset-0 bg-secondary/20 rounded-full scale-75`} />
-                        <ImageBackground
-                            source={{ uri: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBmjHJ0wlRGXxthSIbW9ftI_Vab0BLGj5qV2EEo7fIk1_wmSJ2K6AcGAXQ-6z2UFAz2PL1LlpniYhhDrZtTJBr-Ss-9o1lfg-U7nO499FelxgViDCXEGCaQDOyiLUJJIFrCH7WtcbHbFem5XgA-n13d6pbhb2SYtcHPjV1ibBhc54qv-lkEG2Hu9HtnpxvsrePXgPbopjzahdVY-IEcUeciIDuiVlyU8BJp6OCRuDp503UJFKYV943il_YHCUHHOIWFpuvTP4hKmQBA' }}
-                            style={tw`w-full h-full justify-end`}
-                            resizeMode="contain"
-                        >
-                            <LinearGradient
-                                colors={['transparent', 'rgba(34,25,16,0.8)', '#221910']}
-                                style={tw`h-1/3 w-full`}
-                            />
-                        </ImageBackground>
+                        <LottieView
+                            source={{ uri: 'https://lottie.host/e2ba2a93-780c-43f9-ba20-2804b786ebbb/B3H5v0qWn9.json' }}
+                            autoPlay
+                            loop
+                            style={tw`w-full h-full`}
+                        />
                     </View>
 
                     {/* Text Content */}
                     <View style={tw`items-center px-4 max-w-xs`}>
                         <Text style={tw`text-3xl font-bold text-white text-center leading-10 tracking-tight`}>
                             Find Parking{'\n'}
-                            <Text style={tw`text-ob-primary`}>in Seconds</Text>
+                            <Text style={tw`text-primary`}>in Seconds</Text>
                         </Text>
                         <Text style={tw`text-base text-slate-400 text-center font-normal mt-4 leading-6`}>
                             Locate available spots instantly across Douala. Pay securely with PTech via Mobile Money.
@@ -59,7 +54,7 @@ export default function Discover() {
                 <View style={tw`w-full px-6 pb-10 pt-4 flex-col gap-8 items-center z-10`}>
                     {/* Progress Indicator */}
                     <View style={tw`flex-row items-center gap-2`}>
-                        <View style={tw`h-1.5 w-8 rounded-full bg-secondary`} />
+                        <View style={tw`h-1.5 w-8 rounded-full bg-primary`} />
                         <View style={tw`h-1.5 w-1.5 rounded-full bg-white/20`} />
                         <View style={tw`h-1.5 w-1.5 rounded-full bg-white/20`} />
                     </View>
@@ -67,7 +62,7 @@ export default function Discover() {
                     {/* Action Button */}
                     <TouchableOpacity
                         onPress={() => router.push('/onboarding/payments')}
-                        style={tw`w-full flex-row items-center justify-center rounded-xl h-14 bg-secondary shadow-lg`}
+                        style={tw`w-full flex-row items-center justify-center rounded-xl h-14 bg-primary shadow-lg`}
                     >
                         <Text style={tw`text-white text-lg font-bold mr-2`}>Next</Text>
                         <MaterialIcons name="arrow-forward" size={20} color="white" />

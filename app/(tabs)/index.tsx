@@ -62,7 +62,7 @@ export default function PTechHomeMapView() {
             <MaterialIcons name="search" size={24} color="#94a3b8" />
           </View>
           <TextInput
-            style={tw`h-14 w-full rounded-2xl border border-white/10 bg-surface-dark/40 py-2 pl-12 pr-12 text-base text-white shadow-glass`}
+            style={tw`h-14 w-full rounded-2xl border border-white/10 bg-surface-dark/40 py-2 pl-12 pr-12 text-base text-white shadow-lg`}
             placeholder="Find parking in Douala..."
             placeholderTextColor="#94a3b8"
           />
@@ -72,7 +72,7 @@ export default function PTechHomeMapView() {
         </View>
 
         {/* Filter Chips */}
-        <ScrollView horizontal showsHorizontalScrollIndicator={false} style={tw`mt-4 pl-1 no-scrollbar`} contentContainerStyle={tw`gap-3 pb-2`}>
+        <ScrollView horizontal showsHorizontalScrollIndicator={false} style={tw`mt-4 pl-1`} contentContainerStyle={tw`gap-3 pb-2`}>
           <TouchableOpacity style={[tw`rounded-full px-5 py-2 border border-primary/20 shadow-sm overflow-hidden`]}>
             <LinearGradient colors={['#f97316', '#ea580c']} style={StyleSheet.absoluteFill} />
             <Text style={tw`text-xs font-bold text-white z-10`}>All Zones</Text>

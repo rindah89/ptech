@@ -13,7 +13,7 @@ import tw from '../../utils/tailwind';
 
 export default function AddVehicle() {
     const addVehicle = useParkingStore(state => state.addVehicle);
-    const [vehicleType, setVehicleType] = useState<'Car' | 'Motorcycle' | 'Truck'>('Car');
+    const [vehicleType, setVehicleType] = useState<'Car' | 'Motorcycle' | 'Truck' | 'EV'>('Car');
 
     const { control, handleSubmit, setValue, watch, formState: { errors } } = useForm({
         resolver: zodResolver(vehicleSchema),
@@ -60,43 +60,50 @@ export default function AddVehicle() {
 
                     <View style={tw`mt-4 mb-8`}>
                         <Text style={tw`text-slate-400 text-xs font-bold uppercase tracking-wider pl-1 mb-4`}>Vehicle Type</Text>
-                        {errors.type && <Text style={tw`text-red-500 text-xs mb-2`}>{errors.type.message}</Text>}
+                        {errors.type && <Text style={tw`text-red-500 text-xs mb-2`}>{errors.type?.message as string}</Text>}
                         <View style={tw`flex-row justify-between w-full`}>
                             <TouchableOpacity
                                 onPress={() => { setVehicleType('Car'); setValue('type', 'Car'); }}
                                 style={[
-                                    tw`flex-1 items-center justify-center p-4 rounded-2xl border`,
+                                    tw`flex-1 items-center justify-center py-4 px-2 rounded-2xl border mx-1`,
                                     vehicleType === 'Car' ? tw`border-primary bg-primary/10` : tw`border-white/5 bg-background-dark`
                                 ]}
                             >
-                                <MaterialIcons name="directions-car" size={32} color={vehicleType === 'Car' ? '#f27f0d' : '#888'} />
-                                <Text style={tw`text-xs font-bold mt-2 ${vehicleType === 'Car' ? 'text-[#f27f0d]' : 'text-[#888]'}`}>Car</Text>
+                                <MaterialIcons name="directions-car" size={28} color={vehicleType === 'Car' ? '#f27f0d' : '#888'} />
+                                <Text style={tw`text-[10px] font-bold mt-2 ${vehicleType === 'Car' ? 'text-[#f27f0d]' : 'text-[#888]'}`}>Car</Text>
                             </TouchableOpacity>
-
-                            <View style={tw`w-4`} />
 
                             <TouchableOpacity
                                 onPress={() => { setVehicleType('Motorcycle'); setValue('type', 'Motorcycle'); }}
                                 style={[
-                                    tw`flex-1 items-center justify-center p-4 rounded-2xl border`,
+                                    tw`flex-1 items-center justify-center py-4 px-2 rounded-2xl border mx-1`,
                                     vehicleType === 'Motorcycle' ? tw`border-primary bg-primary/10` : tw`border-white/5 bg-background-dark`
                                 ]}
                             >
-                                <MaterialIcons name="two-wheeler" size={32} color={vehicleType === 'Motorcycle' ? '#f27f0d' : '#888'} />
-                                <Text style={tw`text-xs font-bold mt-2 ${vehicleType === 'Motorcycle' ? 'text-[#f27f0d]' : 'text-[#888]'}`}>Moto</Text>
+                                <MaterialIcons name="two-wheeler" size={28} color={vehicleType === 'Motorcycle' ? '#f27f0d' : '#888'} />
+                                <Text style={tw`text-[10px] font-bold mt-2 ${vehicleType === 'Motorcycle' ? 'text-[#f27f0d]' : 'text-[#888]'}`}>Moto</Text>
                             </TouchableOpacity>
-
-                            <View style={tw`w-4`} />
 
                             <TouchableOpacity
                                 onPress={() => { setVehicleType('Truck'); setValue('type', 'Truck'); }}
                                 style={[
-                                    tw`flex-1 items-center justify-center p-4 rounded-2xl border`,
+                                    tw`flex-1 items-center justify-center py-4 px-2 rounded-2xl border mx-1`,
                                     vehicleType === 'Truck' ? tw`border-primary bg-primary/10` : tw`border-white/5 bg-background-dark`
                                 ]}
                             >
-                                <MaterialIcons name="local-shipping" size={32} color={vehicleType === 'Truck' ? '#f27f0d' : '#888'} />
-                                <Text style={tw`text-xs font-bold mt-2 ${vehicleType === 'Truck' ? 'text-[#f27f0d]' : 'text-[#888]'}`}>Truck</Text>
+                                <MaterialIcons name="local-shipping" size={28} color={vehicleType === 'Truck' ? '#f27f0d' : '#888'} />
+                                <Text style={tw`text-[10px] font-bold mt-2 ${vehicleType === 'Truck' ? 'text-[#f27f0d]' : 'text-[#888]'}`}>Truck</Text>
+                            </TouchableOpacity>
+
+                            <TouchableOpacity
+                                onPress={() => { setVehicleType('EV'); setValue('type', 'EV'); }}
+                                style={[
+                                    tw`flex-1 items-center justify-center py-4 px-2 rounded-2xl border mx-1`,
+                                    vehicleType === 'EV' ? tw`border-primary bg-primary/10` : tw`border-white/5 bg-background-dark`
+                                ]}
+                            >
+                                <MaterialIcons name="electric-car" size={28} color={vehicleType === 'EV' ? '#f27f0d' : '#888'} />
+                                <Text style={tw`text-[10px] font-bold mt-2 ${vehicleType === 'EV' ? 'text-[#f27f0d]' : 'text-[#888]'}`}>EV</Text>
                             </TouchableOpacity>
                         </View>
                     </View>

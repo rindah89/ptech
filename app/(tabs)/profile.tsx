@@ -79,6 +79,20 @@ export default function Profile() {
                     <SettingItem onPress={() => router.push('/profile/settings')} icon="notifications" title="Notification Preferences" />
                     <SettingItem onPress={() => router.push('/profile/support')} icon="support-agent" title="Support & Help" />
 
+                    {/* Admin Portal Button */}
+                    {user?.role === 'admin' && (
+                        <View style={tw`mt-4 mb-2`}>
+                            <Button label="Admin Portal" variant="primary" onPress={() => router.push('/admin')} icon="admin-panel-settings" />
+                        </View>
+                    )}
+
+                    {/* Agent Portal Button */}
+                    {user?.role === 'agent' && (
+                        <View style={tw`mt-4 mb-2`}>
+                            <Button label="Agent Portal" variant="ghost" onPress={() => router.push('/agent')} icon="security" />
+                        </View>
+                    )}
+
                     {/* Logout Button */}
                     <View style={tw`pt-6 pb-8`}>
                         <Button label="Logout" variant="danger" onPress={handleLogout} icon="logout" />

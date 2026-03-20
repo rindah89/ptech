@@ -22,7 +22,7 @@ export default function SignIn() {
 
     const onSubmit = async (data: LoginFormData) => {
         await login(data.phoneNumber, data.password);
-        router.replace('/(tabs)');
+        // _layout.tsx will handle the redirect now via useSegments auth guard
     };
 
     return (
@@ -48,9 +48,9 @@ export default function SignIn() {
             <View style={tw`z-10 w-full max-w-md px-6 pt-12`}>
                 <View style={tw`items-center mb-10 mt-10`}>
                     <View style={tw`relative mb-4`}>
-                        <View style={tw`absolute inset-0 bg-[#f97316] rounded-full blur-xl opacity-40`} />
-                        <View style={tw`h-20 w-20 bg-black border-2 border-[#f97316] rounded-full items-center justify-center shadow-lg`}>
-                            <MaterialIcons name="local-parking" size={40} color="#f97316" />
+                        <View style={tw`absolute inset-0 bg-primary rounded-full blur-xl opacity-40`} />
+                        <View style={tw`h-20 w-20 bg-black border-2 border-primary rounded-full items-center justify-center shadow-lg`}>
+                            <MaterialIcons name="local-parking" size={40} color="#004C70" />
                         </View>
                     </View>
                     <Text style={tw`text-white text-3xl font-bold tracking-tight mb-2`}>Welcome Back</Text>
@@ -79,7 +79,7 @@ export default function SignIn() {
 
                     <View style={tw`flex-row justify-end mb-6`}>
                         <TouchableOpacity>
-                            <Text style={tw`text-[#f97316] font-bold text-sm hover:underline`}>Forgot password?</Text>
+                            <Text style={tw`text-primary font-bold text-sm hover:underline`}>Forgot password?</Text>
                         </TouchableOpacity>
                     </View>
 

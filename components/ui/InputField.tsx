@@ -36,10 +36,10 @@ export function InputField({
 
             <View style={[
                 tw`h-14 rounded-xl border bg-black/40 flex-row items-center px-4 transition-all`,
-                isFocused ? tw`border-primary shadow-[0_0_10px_rgba(249,115,22,0.2)]` : tw`border-white/10`,
+                isFocused ? tw`border-primary shadow-[0_0_10px_rgba(0,76,112,0.2)]` : tw`border-white/10`,
                 error ? tw`border-red-500` : tw``
             ]}>
-                {icon && <MaterialIcons name={icon} size={20} color={isFocused ? "#f97316" : "#64748b"} style={tw`mr-3`} />}
+                {icon && <MaterialIcons name={icon} size={20} color={isFocused ? "#004C70" : "#64748b"} style={tw`mr-3`} />}
 
                 <TextInput
                     style={[tw`flex-1 text-white text-base h-full`, style]}

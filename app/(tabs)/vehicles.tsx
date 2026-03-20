@@ -67,7 +67,7 @@ export default function Vehicles() {
                                             </View>
                                         )}
                                     </View>
-                                    <Text style={tw`text-slate-400 font-medium tracking-widest`}>{vehicle.plateNumber}</Text>
+                                    <Text style={tw`text-base text-slate-400 font-medium tracking-widest`}>{vehicle.plateNumber}</Text>
                                 </View>
 
                                 <TouchableOpacity

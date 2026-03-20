@@ -62,7 +62,7 @@ export default function History() {
                                     <View style={tw`flex-row items-center mt-4`}>
                                         <View style={tw`bg-black/50 border border-white/10 rounded-xl px-4 py-3 flex-row items-center mr-3`}>
                                             <MaterialIcons name="directions-car" size={20} color={tw.color('primary')} style={tw`mr-2`} />
-                                            <Text style={tw`text-white font-bold tracking-widest`}>{activeSession.vehicleId}</Text>
+                                            <Text style={tw`text-base text-white font-bold tracking-widest`}>{activeSession.vehicleId}</Text>
                                         </View>
                                         <View style={tw`bg-primary/20 border border-primary/30 rounded-xl px-4 py-3 flex-1 items-center justify-center`}>
                                             <Text style={tw`text-primary font-bold`}>{activeSession.durationMinutes} Min</Text>

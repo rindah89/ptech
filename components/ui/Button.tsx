@@ -36,7 +36,7 @@ export function Button({
     const labelStyles = tw`font-bold tracking-wide`;
 
     if (isPrimary || isDanger) {
-        const colors = isPrimary ? ['#3b82f6', '#2563eb'] : ['#ef4444', '#dc2626'];
+        const colors = isPrimary ? ['#004C70', '#003b5c'] : ['#ef4444', '#dc2626'];
 
         return (
             <TouchableOpacity disabled={disabled || loading} style={[tw`w-full`, style]} {...props}>
